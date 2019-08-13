@@ -1,29 +1,11 @@
-# my-project
+# Common-components
+#### cd Common-components 打开终端
+- npm link
+#### 创建一个软连接，并保存到目录C:\Users\用户名\AppData\Roaming\npm\node_modules下面
 
-## Project setup
-```
-npm install
-```
+### 进去自己的vue项目
+- npm link Common-components
+#### 这就将这个公共的项目通过软连接的方式引入到项目里面来了
 
-### Compiles and hot-reloads for development
-```
-npm run serve
-```
+#### 这时修改Common-components项目下面的任意代码都会实时生效，不用打包，也不用重启
 
-### Compiles and minifies for production
-```
-npm run build
-```
-
-### Run your tests
-```
-npm run test
-```
-
-### Lints and fixes files
-```
-npm run lint
-```
-
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
