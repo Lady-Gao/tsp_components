@@ -1,13 +1,12 @@
 <template>
   <div>
-appd  
+HelloWorld
   </div>
 </template>
 
 <script>
-
-  export default {  
-    
+  export default {
+    name:'HelloWorld'
   }
 </script>
 
