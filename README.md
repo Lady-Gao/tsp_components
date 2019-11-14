@@ -1,4 +1,6 @@
-# cvtspweb
+
+# cvtspweb 开启软连接 本地调试
+
 #### 项目clone之后
 
 #### 进入cvtspweb 打开终端
@@ -19,4 +21,6 @@
 
 #### 这时修改cvtspweb项目下面的任意代码都会实时生效，不用打包，也不用重启
 
- 
+##### npm地址：https://www.npmjs.com/package/cvtspweb
+##### 账号: monstergao,zhangchangyu
+

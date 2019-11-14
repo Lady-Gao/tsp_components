@@ -1,6 +1,6 @@
 {
-  "name": "cvtspweb1",
-  "version": "0.1.33",
+  "name": "cvtspweb",
+  "version": "0.1.35",
   "scripts": {
     "dev": "vue-cli-service serve",
     "dev-build": "vue-cli-service build --mode production",
@@ -54,6 +54,6 @@
     "type": "git",
     "url": "http://git.cvtsp.com/webTwins/cvtsp2.0_commpent"
   },
-  "author": "",
+  "author": "monstergao",
   "license": "ISC"
 }

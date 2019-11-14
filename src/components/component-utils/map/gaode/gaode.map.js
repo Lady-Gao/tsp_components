@@ -49,7 +49,7 @@ export default class GaoDe {
                   offset: new AMap.Pixel(-16, -16),
                   position: point,
                   topWhenClick: true,
-                  icon: args[0]
+                  icon: args[0],
               });
               marker.point = point;
               args[2] ? this.moveToCenter(point, args[2]) : null
@@ -524,7 +524,6 @@ export default class GaoDe {
      * @param {object} clb 使用自定义弹框 
      */
     createInfoWindow(content, options={}, clb=true) {
-        debugger
         let style = Object.assign(options, {
             isCustom: clb ? true : false,
             autoMove: true,
@@ -537,7 +536,7 @@ export default class GaoDe {
       * @param {object} infoWindow 
       * @param {*} point 
       */
-    openInfoWindow(content, point, options={},callback ) {
+    openInfoWindow(point, content, options = {}, callback) {
           //样式
           let style = {
               isCustom: true,
@@ -571,8 +570,8 @@ export default class GaoDe {
       * @param {object} options //弹框样式 
       */
      overlayClickOpenInfoWindow(overlay, point, content, options = {}, callback) {
-        this.addEventListener(overlay, 'click', ()=>{
-            this.openInfoWindow(content, point, options, callback)
+        this.addEventListener(overlay, 'click', (e)=>{
+            this.openInfoWindow(e.lnglat, content, options = {}, callback)
         })
      }
       /*====================================覆盖物（marker）基础操作================================================================= */
@@ -604,6 +603,22 @@ export default class GaoDe {
        setPosition(overlay, point) {
            overlay.setPosition(point);
            return overlay;
+       }
+       /**
+        * 设置覆盖物图标
+        * @param {object} marker 
+        * @param {*} img 
+        */
+       setIcon(marker, img) {
+           marker.setIcon(
+               new AMap.Icon({
+                   size: new AMap.Size(32, 32), // 图标尺寸
+                   offset: new AMap.Pixel(-16, -16),
+                   imageSize: img ? new AMap.Size(32, 32) :new AMap.Size(5, 5), // 根据所设置的大小拉伸或压缩图片
+                   image: img||''
+               })
+           );
+           return marker;
        }
        /**
         * 设置覆盖物旋转角
@@ -808,7 +823,13 @@ export default class GaoDe {
                 })
             }
              /*============================平滑移動============================================================ */
-              
+              pathSimpliClear(){
+                 //清空
+                 if (this.pathSimplifierIns) {
+                     this.pathSimplifierIns.setData([])
+                     this.pathSimplifierIns = null
+                 };
+              }
               /**
                * 巡航器初始化
                * @param {Object} obj: {
@@ -823,11 +844,7 @@ export default class GaoDe {
                * @param {FUN} HoverTitleCallback 选传 hove时的文本框内容
                */
              newprealTimeSimplifier(type = 'moved', obj, clickCallback, HoverTitleCallback) {
-                 //清空
-                 if (this.pathSimplifierIns) {
-                    this.pathSimplifierIns.setData([])
-                    this.pathSimplifierIns=null
-                  };
+                this.pathSimpliClear()
                AMapUI.load(['ui/misc/PathSimplifier', 'lib/$'], (PathSimplifier, $) => {
                    if (!PathSimplifier.supportCanvas) {
                        alert("当前环境不支持 Canvas！");
@@ -904,7 +921,6 @@ export default class GaoDe {
                  //增加路线
                   let dataArr = this.pathData(obj)
                  this.pathSimplifierIns.setData([dataArr]); //延展路径
-debugger
                  //重新建立一个巡航器
                  this.navg1 = this.pathSimplifierIns.createPathNavigator(0, {
                      // loop: true, //循环播放
@@ -913,12 +929,12 @@ debugger
                          width: 32,
                          height: 32,
                          //使用图片
-                        //  content: this.PathSimplifier.Render.Canvas.getImageContent(obj.src,
-                        //      () => {
-                        //          this.pathSimplifierIns.renderLater();
-                        //      },
-                        //      null
-                        //  )
+                         content: this.PathSimplifier.Render.Canvas.getImageContent(obj.src,
+                             () => {
+                                 this.pathSimplifierIns.renderLater();
+                             },
+                             null
+                         )
                      }
                  });
 
@@ -928,7 +944,7 @@ debugger
 
                  //恢复巡航器的位置
                  if (cursor.idx >= 0) {
-                     this.navg1.moveToPoint(cursor.idx, cursor.tail);
+                    //  this.navg1.moveToPoint(cursor.idx, cursor.tail);
                  }
              }
 }
