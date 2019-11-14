@@ -1,0 +1,52 @@
+
+ .el-dialog__wrapper{
+     left:auto !important;
+     overflow: hidden;
+     width:100%;
+ }
+  .el-dialog{
+       padding: 5px !important;;
+      background: #eeeeee57;
+       .el-dialog__header {
+               padding: 10px 0 0 0;
+       }
+       .el-dialog__body{
+           padding:0 20px;
+      
+       .messTool{
+               width: 100%;
+               height: 35px;
+               margin-bottom: 10px;
+               .el-tag{
+                   margin-right: 8px;
+                   width: 70px;
+                   text-align: center;
+               }
+               .hoveTag:hover{
+                   cursor:pointer;
+               }
+       }
+       .infoGrounp {
+               height: 100px;
+               width: 110%;
+               overflow-y: scroll;
+               margin-bottom: 20px;
+               .el-form{
+                    width: 96%;
+               }   
+       }
+       .messTab {
+               overflow: hidden;
+               width: 102%;
+        //    position: absolute;
+        //    bottom: 70px;
+           .el-tabs__content{
+            height: 100px;
+            width: 98%;
+            overflow-y: scroll;
+
+            }
+       }
+    }
+  }
+  

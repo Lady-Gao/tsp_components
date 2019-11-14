@@ -1,0 +1,46 @@
+@import '../../../assets/css/element-variables.scss';
+
+.cv-grid-shadow {
+    box-shadow: $--box-shadow-base;
+}
+.cv-grid {
+    background: #fff;
+    .cv-grid-header {
+        // background: $--color-text-placeholder;
+    }
+    .el-table__body tr{ 
+        &:hover > td {
+            background: $--color-primary-light-9;
+        }
+    }
+    .cv-grid-row {
+        transition: $--all-transition;
+    }
+    .cv-grid-pagination {
+        padding: 8px 0;
+        text-align: right;
+        .el-pagination__total , .el-pagination__jump , .el-icon-arrow-left , .el-icon-arrow-right,.el-pagination__editor{
+            height: 30px;
+            line-height: 30px;
+        }
+        .el-pagination__jump{
+            margin-left: 0px;
+            .el-input__inner{
+                height: 28px;
+                line-height: 28px;
+            }
+        }
+         .btn-prev {
+             margin-right: 20px;
+         }
+
+         .btn-next {
+             margin-left: 20px;
+         }
+    }
+     .paginationbox {
+         position: relative;
+
+
+     }
+}

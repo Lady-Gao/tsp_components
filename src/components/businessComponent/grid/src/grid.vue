@@ -1,0 +1,170 @@
+<template>
+    <div class='Grid'>
+<!-- 入参表格 -->
+       <el-table ref='table' v-if='render' header-align='center' border height='100%' 
+       @row-click="tableRowClick"
+       @select='tableHandlerSelect'
+       @select-all='tableHandlerSelectAll'
+       @selection-change='tableSelectionChange'
+      :data="tableData">
+      <!-- 是否启用多选表格 -->
+        <el-table-column v-if='selection' type="selection"  width="55">
+        </el-table-column>
+        <el-table-column  align="center" showOverflowTooltip v-for="item in render" :key='item.prop'    :label="item.label"     :min-width="item.width||100">
+                <template v-slot="scope" >
+                    <!-- 没有按钮 -->
+                    <span v-if='!item.scope'>
+                        {{item.formatter?item.formatter(scope.row):scope.row[item.prop]}}
+                        </span>
+                    <!-- 有按钮 -->
+                    <div v-else style='display: flex;'>
+                        <el-button  v-for='(btn,idx) in item.scope' :key='idx' size='mini' :type='btnType(btn.type)' @click.native='btn.click(scope.row)'>
+                            {{btn.type}} 
+                        </el-button>
+                    </div>
+                </template>
+            </el-table-column>
+       </el-table>
+<!-- 自定义表格内容 -->
+        <el-table  height='100%'  border ref='table' v-else header-align='center' :data="tableData"  @row-click="tableRowClick" style="width: 100%">
+            <slot></slot>
+        </el-table>
+
+<!-- 分页 -->
+  <el-pagination background v-if='currentPage&&data.total>10' class='pagination'
+      @size-change="handleSizeChange"
+      @current-change="handleCurrentChange"
+      :current-page="currentPage"
+      :page-sizes="[10, 20, 30,40, 50]"
+      :page-size="data.size||0"
+      layout="total,prev, pager, next,sizes, jumper"
+      :total="data.total||0">
+    </el-pagination>
+    </div> 
+</template>
+
+<script>
+    export default { 
+        name: 'Grid',
+        props: {
+            data: {//后台数据 包括表格和分页
+            type: Object,
+            default() { return {
+                size:0,
+                total:0,
+            } }
+            },
+            render:Array,//入参模板
+            selection:false,//是否启用复选表格
+        },
+       data(){
+           return {
+               currentPage:0,
+               tableData:[]
+           }
+       },
+       watch:{
+           data(val) {
+               if(val&&(val.records||val.data)){
+                   console.log(val)
+                   this.tableData = val.records||val.data;
+                   this.currentPage=val.current||0
+               }else{
+                   this.tableData = [];
+                   this.currentPage=0
+
+               }
+           }
+       },
+       methods: {
+           /**
+            * 根据类型修改按钮type
+            */
+           btnType(type) {
+               switch (type) {
+                   case 'add':
+                       return 'success'
+                       break;
+                   case 'delete':
+                        return 'danger'
+                       break;
+                   case 'modify':
+                        return 'warning'
+                       break;
+                   case 'text':
+                        return 'text'
+                       break;
+                   
+               
+               }
+           },
+             /**
+         * 当某一行被点击时会触发该事件
+         * @param {*} row 
+         * @param {*} event 
+         * @param {*} column 
+         */
+         tableRowClick(row, event, column) {
+           this.$emit.apply(this, ['row-click', ...arguments]);
+         },
+           /**
+         * 当用户手动勾选数据行的 Checkbox 时触发的事件
+         * @param {*} selection: 当前所有勾选的数组 
+         * @param {*} row 
+         */
+        tableHandlerSelect(selection, row) {
+            this.$emit.apply(this, ['select', ...arguments]);
+        },
+
+        /**
+         * 当用户手动勾选全选 Checkbox 时触发的事件
+         * @param {*} selection: 当前所有勾选的数组 
+         */
+        tableHandlerSelectAll(selection) {
+            this.$emit.apply(this, ['selet-all', ...arguments]);
+        },
+
+        /**
+         * 当选择项发生变化时会触发该事件
+         * @param {*} selection 
+         */
+        tableSelectionChange(selection) {
+            this.$emit.apply(this, ['selection-change', ...arguments]);
+        },
+        handleSizeChange(val){
+            this.$emit('loadTable',{size:val})
+        }, 
+        handleCurrentChange(val){
+            this.$emit('loadTable',{current:val})
+        }
+       },
+        
+    }
+</script>
+
+<style lang='scss'>
+.Grid{
+    height:100%;
+    width:100%;
+.el-table{
+    // width:100%;
+    // height: 100%;
+    // overflow-y: scroll;
+}
+.el-table td{
+    padding: 5px 0px !important;
+    .cell{
+        span{
+            overflow: hidden;
+            text-overflow: ellipsis;
+            -o-text-overflow: ellipsis;
+            white-space: nowrap;
+        }
+         
+    }
+}
+.pagination{
+    float: right;
+}
+}
+</style>

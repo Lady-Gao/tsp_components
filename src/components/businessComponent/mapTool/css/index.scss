@@ -1,0 +1,50 @@
+
+.cv-maptool {
+    padding: 6px 10px;
+    background: #fff;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, .12), 0 0 6px rgba(0, 0, 0, .04);;
+    .maptool-default {
+        display: inline-block;
+        padding: 0 8px;
+        cursor: pointer;
+    }
+    .maptool-search {
+        width: 110px;
+    }
+   
+}
+.noMapType{
+    width: 70px;
+    text-align: center;
+    display: none ;
+}
+.roadType{
+    width: 70px;
+    text-align: center;
+    display: block ;
+}
+.TruckBox {
+    position: fixed;
+    right: 5px;
+    top: 220px;
+    height: 90px;
+    line-height: 90px;
+    padding: 0 10px;
+    border-radius: 15px;
+    background: #fff;
+    z-index:1;
+    i {
+        position: absolute;
+        top: 5px;
+        right: 10px;
+        font-size: 16px;
+    }
+
+    h5 {
+        color: rgb(106, 157, 233);
+        width: 60px;
+        margin: 0 10px;
+        float: left;
+        cursor: pointer;
+    }
+}

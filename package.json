@@ -1,0 +1,59 @@
+{
+  "name": "cvtspweb1",
+  "version": "0.1.33",
+  "scripts": {
+    "dev": "vue-cli-service serve",
+    "dev-build": "vue-cli-service build --mode production",
+    "lint": "vue-cli-service lint"
+  },
+  "dependencies": {
+    "babel-preset-env": "^1.7.0",
+    "core-js": "^2.6.5",
+    "element-ui": "^2.12.0",
+    "videojs-flash": "^2.2.0",
+    "vue": "^2.6.10",
+    "vue-i18n": "^8.14.1"
+  },
+  "devDependencies": {
+    "@vue/cli-plugin-babel": "^3.10.0",
+    "@vue/cli-service": "^3.10.0",
+    "babel-core": "^6.22.1",
+    "babel-helper-vue-jsx-merge-props": "^2.0.3",
+    "babel-loader": "^7.1.1",
+    "css-loader": "^0.28.0",
+    "node-sass": "^4.8.3",
+    "sass-loader": "^6.0.7",
+    "vue-template-compiler": "^2.6.10"
+  },
+  "eslintConfig": {
+    "root": true,
+    "env": {
+      "node": true
+    },
+    "extends": [
+      "plugin:vue/essential",
+      "eslint:recommended"
+    ],
+    "rules": {},
+    "parserOptions": {
+      "parser": "babel-eslint"
+    }
+  },
+  "postcss": {
+    "plugins": {
+      "autoprefixer": {}
+    }
+  },
+  "browserslist": [
+    "> 1%",
+    "last 2 versions"
+  ],
+  "description": "#### 进入cvtspweb 打开终端",
+  "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "http://git.cvtsp.com/webTwins/cvtsp2.0_commpent"
+  },
+  "author": "",
+  "license": "ISC"
+}
