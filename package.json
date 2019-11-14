@@ -1,6 +1,6 @@
 {
-  "name": "cvtspweb",
-  "version": "0.1.35",
+  "name": "tsp_components",
+  "version": "0.1.36",
   "scripts": {
     "dev": "vue-cli-service serve",
     "dev-build": "vue-cli-service build --mode production",
@@ -52,7 +52,7 @@
   "main": "index.js",
   "repository": {
     "type": "git",
-    "url": "http://git.cvtsp.com/webTwins/cvtsp2.0_commpent"
+    "url": "http://git.cvtsp.com/Cvnavi_Web/TSP_Components"
   },
   "author": "monstergao",
   "license": "ISC"
