@@ -26,7 +26,11 @@
             </el-table-column>
        </el-table>
 <!-- 自定义表格内容 -->
-        <el-table  height='100%'  border ref='table' v-else header-align='center' :data="tableData"  @row-click="tableRowClick" style="width: 100%">
+        <el-table  height='100%'  border ref='table' v-else header-align='center' :data="tableData"   @row-click="tableRowClick"
+       @select='tableHandlerSelect'
+       @select-all='tableHandlerSelectAll'
+       @selection-change='tableSelectionChange'
+         style="width: 100%">
             <slot></slot>
         </el-table>
 
@@ -65,12 +69,16 @@
        },
        watch:{
            data(val) {
-               if(val&&(val.records||val.data)){
-                   console.log(val)
-                   this.tableData = val.records||val.data;
-                   this.currentPage=val.current||0
+               //有分页
+               if(val&&val.records){
+                   this.tableData = val.records;
+                   this.currentPage=val.current
                }else{
-                   this.tableData = [];
+                   if(val&&val.data){
+                       this.tableData = val.data;
+                   }else{
+                       this.tableData = [];
+                   }
                    this.currentPage=0
 
                }

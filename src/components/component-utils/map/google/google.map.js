@@ -71,6 +71,11 @@ export default class googleMap{
         this.map.setCenter({lat:31.22,lng:121.48});
         this.map.setZoom(zoom||this.zoom);
     }
+    // 单个点居中
+    moveToCenter(point, zoom) {
+        this.map.setCenter(point);
+        this.map.setZoom(zoom || this.zoom);
+    }
     /**
      *设置经纬度为中心点，zoom是必要参数
      *
@@ -168,6 +173,23 @@ export default class googleMap{
         // } else {
         //     return null;
         // }
+    }
+    // 获得地图的覆盖类(overlay) ----  args[0](图标地址) args[1](图标大小)args[2] (zoom)
+    mapAddpoint(points, ...args) {
+        var size, img, marker, point = this.point(points);
+        if (args.length !== 0) {
+            args[1] = undefined ? size = {
+                width: 24,
+                height: 24
+            } : size = args[1];
+            marker = new google.maps.Marker({
+                position: point,
+                icon: args[0],
+            });
+            marker.point = point;
+            args[2] ? this.moveToCenter(point, args[2]) : null
+            return marker;
+        }
     }
     /**
      * 创建线line
