@@ -30,7 +30,7 @@ export default {
         treeData: Array,
         // 已经勾选的节点对象
         storeData: {
-            type: Object,
+            type: [Array, Object],
             default() {return {} }
         },
         // 车辆搜索
@@ -104,7 +104,7 @@ export default {
             immediate: true,
             handler(val) {
                 this.store.vehicles = val;
-                this.store.vehiclesArray = this._ObjectTransferArray(val);
+                    this.store.vehiclesArray = this._ObjectTransferArray(val);
             }
         }
     },
@@ -114,6 +114,9 @@ export default {
          * @param {Object} obj
          */
         _ObjectTransferArray(obj) {
+            if (Array.isArray(obj)) {
+                return obj
+            }
             var results = [];
             Object.keys(obj).forEach(val => {
                 results.push(val);
