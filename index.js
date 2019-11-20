@@ -1,4 +1,3 @@
-import HelloWorld from "./src/components/businessComponent/HelloWorld/index"
 import Grid from "./src/components/businessComponent/grid/index"
 import VehicleMessage from "./src/components/businessComponent/vehicle-message/index"
 import CheckboxLists from "./src/components/businessComponent/checkLists/index"
@@ -21,13 +20,12 @@ import PowerTool from "./src/components/businessComponent/powerTool/power.tool.v
 import TableTool from "./src/components/businessComponent/powerTool/power.table.tool.vue"
 import Dropdown from "./src/components/businessComponent/dropDown/index"
 import BodyContent from "./src/components/businessComponent/bodyContent/content.vue"
-import Tabs from './src/components/businessComponent/tabs'
-import TabsTree from './src/components/businessComponent/tree/index';
+// import Tabs from './src/components/businessComponent/tabs'
+// import TabsTree from './src/components/businessComponent/tree/index';
 
 import PasswordStrength from "./src/components/businessComponent/passwordStrength/passwordStrength.vue"
 const components = [
     Dropdown,
-    HelloWorld,
     Grid,
     VehicleMessage,
     Ocx,
@@ -40,14 +38,14 @@ const components = [
     TableTool,
     BodyContent,
     PasswordStrength,
-    Tabs,
+    // Tabs,
     GaodeMap,
     BaiduMap,
     GoogleMap,
     LazyRender,
     Maptool,
     Icon,
-    TabsTree,
+    // TabsTree,
     BreadCrumb,
     MapArea,
     CheckboxLists,
@@ -64,7 +62,6 @@ export default {
     version: '0.1.0',
     install,
     Dropdown,
-    HelloWorld,
     Grid,
     VehicleMessage,
     Ocx,
@@ -77,14 +74,14 @@ export default {
     Scrollbar,
     TableTool,
     PowerTool,
-    Tabs,
+    // Tabs,
     GaodeMap,
     BaiduMap,
     GoogleMap,
     LazyRender,
     Maptool,
     Icon,
-    TabsTree,
+    // TabsTree,
     BreadCrumb,
     MapArea,
     CheckboxLists,
