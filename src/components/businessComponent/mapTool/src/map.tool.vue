@@ -42,6 +42,11 @@
             <!-- 全屏 -->
             <icon class="maptool-default" :name="!this.fullscreenFlag ? 'fullscreen' : 'fullscreen-exit'"  @click="handlerFullScreen" />
         </ul>
+        <div class='TruckBox' v-if='Truckvisible'>
+          <i class = 'el-icon-close' @click='cloaseTruckbox'> </i>
+          <h5 @click='handleClick("LEAST_DISTANCE")' :style="{color:TruckValue=='REAL_TRAFFIC'?' rgb(106, 157, 233)':'#52ad30c9'}">距离最短</h5>
+          <h5 @click='handleClick("REAL_TRAFFIC")' :style="{color:TruckValue=='REAL_TRAFFIC'?'#52ad30c9':' rgb(106, 157, 233)'}">路况最好</h5>
+         </div>
     </div>
 </template>
 
@@ -78,6 +83,13 @@ export default {
             type: Array,
             default() {
                 return [];
+            }
+        },
+        // marker点数组，只是为了最佳视野聚合
+        markerList: {
+            type: Object,
+            default() {
+                return {};
             }
         },
         // 需要操作的地图对象(this.refs['map'])
@@ -135,7 +147,7 @@ export default {
             checkedVal: true,
             TrafficFlag: false,
             Truckvisible: false,//线路规划弹框
-            TruckValue:0,//线路模式类型
+            TruckValue:'LEAST_DISTANCE',//线路模式类型
         }
     },
     methods:{
@@ -160,34 +172,59 @@ export default {
             const rectangleZoom = this.mapTarget.mapMethods.mapTools("rectangleZoom");
             rectangleZoom.open();
         },
-         /**
-         * 线路规划事件
-         */
-        Driving() {
-            const rectangleZoom = this.mapTarget.mapMethods.mapTools("Driving");
+         //线路规划选择
+        handleClick(e){
+            if(e==this.TruckValue)return
+            this.TruckValue=e
+                this.DrivingPolicy()
+        },
+         Driving() {
+            this.DrivingMarker = [];
+            this.$emit("clearToolArea");
+            this.mapTarget.mapMethods.map.setDefaultCursor("crosshair");
+            this.gaode()
+        },
+        gaode() {
+        let _self =this;
+        this.mapTarget.mapMethods.addEventListener(this.mapTarget.mapMethods.MouseTool, 'draw', this.drawMarker)
+        this.mapTarget.mapMethods.MouseTool.marker({
+            map: _self.mapTarget.mapMethods.map
+        });
+        },
+        drawMarker(event) {
+        this.DrivingMarker.push(event.obj)
+        if(this.DrivingMarker.length>=2){
+            this.mapTarget.mapMethods.MouseTool.close(false);
+            this.mapTarget.mapMethods.removeEventListener(this.mapTarget.mapMethods.MouseTool, 'draw', this.drawMarker);
+            this.mapTarget.mapMethods.map.setDefaultCursor("pointer");
             this.Truckvisible = true;
-            rectangleZoom.open();
+            this.DrivingPolicy();
+        }
+        },
+        DrivingPolicy(){
+        let _self = this;
+        this.driving && this.driving.clear();
+        let start =this.DrivingMarker[0].getPosition();
+        let end =this.DrivingMarker[1].getPosition();
+        AMap.plugin('AMap.Driving', function () {
+            _self.driving = new AMap.Driving({
+            map: _self.mapTarget.mapMethods.map,
+            policy: AMap.DrivingPolicy[_self.TruckValue]
+            });
+            let startLngLat = [start.lng,start.lat];
+            let endLngLat =[end.lng,end.lat];
+            _self.driving.search(startLngLat, endLngLat, function (status, result) {
+            _self.mapTarget.mapMethods.removeOverlay(_self.DrivingMarker[0]);
+            _self.mapTarget.mapMethods.removeOverlay(_self.DrivingMarker[1]);
+            });
+        });
         },
         //关闭线路规划弹框
         cloaseTruckbox() {
             this.Truckvisible = false;
-            this.mapTarget.mapMethods.driving.clear()
+            this.driving.clear()
         },
-        //线路规划选择
-        handleClick(e) {
-            if (e !== this.TruckValue) {
-                this.TruckValue = e
-                let str=''
-                switch (e) {
-                    case 0:
-                        str='LEAST_TIME'
-                    break;
-                    case 1:
-                        str='REAL_TRAFFIC'
-                    break;
-                }
-            }
-        },
+        
         /**
          * 测距事件
          */
@@ -255,15 +292,17 @@ export default {
         },
         // 最佳视野的事件
         handlerGetBestView() {
+           let markerarr=Object.values(this.markerList)
             if (!this.mapTarget) return;
             // 地图方法
+            debugger
             const { mapMethods } = this.mapTarget;
-            if (this.markers.length > 0) {
-                mapMethods.getBestView(this.markers);
+            if (markerarr.length > 0) {
+                mapMethods.setBastView(markerarr);
             } else {
                 mapMethods.setCity("上海");
             }
-            this.$emit("best-view", this.markers);
+            this.$emit("best-view", markerarr);
         },
         /**
          * 全屏按钮事件

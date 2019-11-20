@@ -76,15 +76,16 @@ export default class GaoDe {
      * @param {string} location 
      */
     Geocoder(location) {
-        let _self =this;
-        AMap.service(["AMap.PlaceSearch"], function() {
-            var placeSearch = new AMap.PlaceSearch({ //构造地点查询类
-                map: _self.map
-            });
-            placeSearch.search(location, function(state, result) {
-                _self.removerAllOverlay();
-            });
-        });
+        this.setCity(location)
+        // AMap.service(["AMap.PlaceSearch"], function() {
+        //     var placeSearch = new AMap.PlaceSearch({ //构造地点查询类
+        //         map: _self.map
+        //     });
+        //     placeSearch.search(location, function(state, result) {
+        //        
+        //         _self.removeOverlay(result.poiList.pois);
+        //     });
+        // });
     }
     /**
      *创建Lable并返回文本对象
@@ -152,18 +153,12 @@ export default class GaoDe {
     /**
      *设置最佳视野
      *
-     * @param {*} views  [marker, marker ...]
+     * @param {*} views [object Array]  [marker, marker ...]
      * @memberof gaodeMap
      */
     setBastView(views) {
-        let points = [];
         if (toString.call(views) === '[object Array]') {
-            views.array.forEach(view => {
-                points.push(view.point ? view.point : view);
-            });
-            this.map.setFitView(points);
-        } else {
-            this.map.setFitView([views]);
+            this.map.setFitView(views);
         }
     }
 
@@ -885,7 +880,17 @@ export default class GaoDe {
                    this.navg1 = this.pathSimplifierIns.createPathNavigator(0, {
                        loop: true,
                        speed: 1000000,
-
+                        pathNavigatorStyle: {
+                            width: 32,
+                            height: 32,
+                            //使用图片
+                            content: this.PathSimplifier.Render.Canvas.getImageContent(obj.src,
+                                () => {
+                                    this.pathSimplifierIns.renderLater();
+                                },
+                                null
+                            )
+                        }
                    });
 
                    this.navg1.start();
