@@ -1,16 +1,17 @@
 <template>
     <div class='Grid'>
 <!-- 入参表格 -->
-       <el-table ref='table' v-if='render' header-align='center' border height='100%' 
+       <el-table ref='table' v-if='render' header-align='left'  height='100%' 
        @row-click="tableRowClick"
        @select='tableHandlerSelect'
        @select-all='tableHandlerSelectAll'
        @selection-change='tableSelectionChange'
+       :row-class-name="tableRowClassName"
       :data="tableData">
       <!-- 是否启用多选表格 -->
         <el-table-column v-if='selection' type="selection"  width="55">
         </el-table-column>
-        <el-table-column  align="center" showOverflowTooltip v-for="item in render" :key='item.prop'    :label="item.label"     :min-width="item.width||100">
+        <el-table-column  align="left" showOverflowTooltip v-for="item in render" :key='item.prop'    :label="item.label"     :min-width="item.width||100">
                 <template v-slot="scope" >
                     <!-- 没有按钮 -->
                     <span v-if='!item.scope'>
@@ -26,10 +27,11 @@
             </el-table-column>
        </el-table>
 <!-- 自定义表格内容 -->
-        <el-table  height='100%'  border ref='table' v-else header-align='center' :data="tableData"   @row-click="tableRowClick"
+        <el-table  height='100%'   ref='table' v-else header-align='left' :data="tableData"   @row-click="tableRowClick"
        @select='tableHandlerSelect'
        @select-all='tableHandlerSelectAll'
        @selection-change='tableSelectionChange'
+       :row-class-name="tableRowClassName"
          style="width: 100%">
             <slot></slot>
         </el-table>
@@ -58,6 +60,7 @@
                 total:0,
             } }
             },
+            rowClass:"defaultRow",
             render:Array,//入参模板
             selection:false,//是否启用复选表格
         },
@@ -85,6 +88,9 @@
            }
        },
        methods: {
+           tableRowClassName({row, rowIndex}) {
+                return this.rowClass;
+            },
            /**
             * 根据类型修改按钮type
             */
@@ -154,25 +160,33 @@
 .Grid{
     height:100%;
     width:100%;
-.el-table{
-    // width:100%;
-    // height: 100%;
-    // overflow-y: scroll;
-}
-.el-table td{
-    padding: 5px 0px !important;
-    .cell{
-        span{
-            overflow: hidden;
-            text-overflow: ellipsis;
-            -o-text-overflow: ellipsis;
-            white-space: nowrap;
+    .el-table {
+        th{
+            background: #FAFAFA;
+            font-family: PingFangSC-Medium;
+            font-size: 14px;
+            color: rgba(0,0,0,0.85);
         }
-         
+        td{
+            font-family: PingFangSC-Regular;
+            font-size: 14px;
+            color: rgba(0,0,0,0.65);
+            .cell{
+                span{
+                    overflow: hidden;
+                    text-overflow: ellipsis;
+                    -o-text-overflow: ellipsis;
+                    white-space: nowrap;
+                }
+                
+            }
+        }
+        .defaultRow{
+            padding: 12px;
+        }
     }
-}
-.pagination{
-    float: right;
-}
+    .pagination{
+        float: right;
+    }
 }
 </style>

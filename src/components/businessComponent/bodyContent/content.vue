@@ -48,28 +48,4 @@ export default {
 </script>
 
 <style lang="scss">
-@import "../../../assets/css/element-variables.scss";
-.cv-content {
-  position: relative;
-  @mixin position {
-    position: absolute;
-    top: 0;
-    bottom: 0;
-  }
-  $padding-10: 0 10px;
-
-  .cv-content-main {
-    @include position;
-    right: 0;
-    left:0;
-    transition: all .3s cubic-bezier(.645,.045,.355,1);
-  }
-  .heightStyle {
-    height: 100%;
-    overflow-x: hidden;
-    .cv-scrollbar__view {
-      height: 100%;
-    }
-  }
-}
 </style>
