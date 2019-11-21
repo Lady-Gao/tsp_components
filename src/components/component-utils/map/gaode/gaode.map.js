@@ -235,16 +235,22 @@ export default class GaoDe {
      * @param {object} overlayOptions 
      */
     _createLine(overlayOptions) {
-        // if (overlayOptions instanceof Line) {
-            let points = [];
-            overlayOptions.points.forEach(p => {
-                points.push(this.point(p));
+           let points = [];
+           overlayOptions.points.forEach(p => {
+               points.push(this.point(p));
             });
-            return new AMap.Polyline({
+            let liner=new AMap.Polyline({
+                map: this.map,
                 path: points,
-                ...overlayOptions.style
-            });
+                    // fillColor: '#92bbed',
+                    // fillOpacity: 0.5,
+                strokeColor: "#5298ff",
+                strokeWeight: 6,
+                strokeOpacity: 1
 
+            });
+            this.setBastView([liner])
+        return liner
         // } else {
         //     return null;
         // }
