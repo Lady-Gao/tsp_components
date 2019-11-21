@@ -1,5 +1,4 @@
 import Grid from "./src/components/businessComponent/grid/index"
-import VehicleMessage from "./src/components/businessComponent/vehicle-message/index"
 import CheckboxLists from "./src/components/businessComponent/checkLists/index"
 import Ocx from "./src/components/businessComponent/video/ocx/ocx.vue";
 import H5Video from "./src/components/businessComponent/video/h5Video/h5Video.vue";
@@ -20,14 +19,11 @@ import PowerTool from "./src/components/businessComponent/powerTool/power.tool.v
 import TableTool from "./src/components/businessComponent/powerTool/power.table.tool.vue"
 import Dropdown from "./src/components/businessComponent/dropDown/index"
 import BodyContent from "./src/components/businessComponent/bodyContent/content.vue"
-// import Tabs from './src/components/businessComponent/tabs'
-// import TabsTree from './src/components/businessComponent/tree/index';
 
 import PasswordStrength from "./src/components/businessComponent/passwordStrength/passwordStrength.vue"
 const components = [
     Dropdown,
     Grid,
-    VehicleMessage,
     Ocx,
     H5Video,
     FlashVideo,
@@ -38,7 +34,6 @@ const components = [
     TableTool,
     BodyContent,
     PasswordStrength,
-    // Tabs,
     GaodeMap,
     BaiduMap,
     GoogleMap,
@@ -63,7 +58,6 @@ export default {
     install,
     Dropdown,
     Grid,
-    VehicleMessage,
     Ocx,
     BodyContent,
     H5Video,
