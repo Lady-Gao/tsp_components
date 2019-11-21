@@ -235,16 +235,23 @@ export default class GaoDe {
      * @param {object} overlayOptions 
      */
     _createLine(overlayOptions) {
-        // if (overlayOptions instanceof Line) {
-            let points = [];
-            overlayOptions.points.forEach(p => {
-                points.push(this.point(p));
+           let points = [];
+           let style={
+               strokeColor: "#5298ff",
+                strokeWeight: 6,
+                strokeOpacity: 1
+           }
+           if (overlayOptions.style) Object.assign(style, overlayOptions.style)
+           overlayOptions.points.forEach(p => {
+               points.push(this.point(p));
             });
-            return new AMap.Polyline({
+            let liner=new AMap.Polyline({
+                map: this.map,
                 path: points,
-                ...overlayOptions.style
+                ...style
             });
-
+            this.setBastView([liner])
+        return liner
         // } else {
         //     return null;
         // }
@@ -547,6 +554,7 @@ export default class GaoDe {
           infoWindow.open(this.map, point);
            if (callback&&(toString.call(callback) === "[object Function]"))
                callback(infoWindow);
+               console.log(infoWindow, 'infoWindow')
           return infoWindow
     }
     /**
@@ -564,9 +572,9 @@ export default class GaoDe {
       * @param {function} callback 
       * @param {object} options //弹框样式 
       */
-     overlayClickOpenInfoWindow(overlay, point, content, options = {}, callback) {
+     overlayClickOpenInfoWindow(overlay, content, options = {}, callback=()=>{}) {
         this.addEventListener(overlay, 'click', (e)=>{
-            this.openInfoWindow(e.lnglat, content, options = {}, callback)
+            this.openInfoWindow(e.lnglat, content, options, callback)
         })
      }
       /*====================================覆盖物（marker）基础操作================================================================= */
