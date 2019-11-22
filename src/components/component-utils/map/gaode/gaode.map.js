@@ -533,6 +533,10 @@ export default class GaoDe {
         });
         return new AMap.InfoWindow(content, style);
     }
+    cvOpenInfoWindow(infoWindow, point) {
+        infoWindow.open(this.map, point);
+    }
+
      /**
       * 在地图上打开信息弹窗(创建infoWindow对象)
       * @param {object} infoWindow 
@@ -834,7 +838,7 @@ export default class GaoDe {
                  };
               }
               /**
-               * 巡航器初始化
+               * 多车监控巡航器初始化
                * @param {Object} obj: {
                *        speed 
                *        src 
@@ -903,7 +907,7 @@ export default class GaoDe {
 
                    this.navg1.start();
                })
-
+               return this.pathSimplifierIns
                }
              /**
               * @param {Number} type 0:实时 1 轨迹
@@ -960,4 +964,5 @@ export default class GaoDe {
                     //  this.navg1.moveToPoint(cursor.idx, cursor.tail);
                  }
              }
+          
 }

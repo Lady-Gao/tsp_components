@@ -1,6 +1,6 @@
 <template>
     <div class='Grid'>
-<!-- 入参表格 -->
+<!-- v-if render入参表格 -->
        <el-table ref='table' v-if='render' header-align='left'  height='100%' 
        @row-click="tableRowClick"
        @select='tableHandlerSelect'
@@ -15,18 +15,24 @@
                 <template v-slot="scope" >
                     <!-- 没有按钮 -->
                     <span v-if='!item.scope'>
+                         <icon v-if='item.icon' :name="item.icon(scope.row)" style='color:#57b64a;width:15px;'></icon>
                         {{item.formatter?item.formatter(scope.row):scope.row[item.prop]}}
                         </span>
                     <!-- 有按钮 -->
                     <div v-else style='display: flex;'>
-                        <el-button  v-for='(btn,idx) in item.scope' :key='idx' size='mini' :type='btnType(btn.type)' @click.native='btn.click(scope.row)'>
-                            {{btn.type}} 
+                        <el-button  v-for='(btn,idx) in item.scope' :key='idx' size='mini' :type='btnType(btn.type)' @click.native='btn.click(scope.row)' v-show='btn.v_show?btn.v_show(scope.row):true'>
+                            <!-- 按钮显示名称 -->
+                            {{typeof(btn.name)=='string'?btn.name:btn.name(scope.row)}} 
                         </el-button>
                     </div>
                 </template>
             </el-table-column>
        </el-table>
-<!-- 自定义表格内容 -->
+
+
+
+
+<!-- v-if slot自定义表格内容 -->
         <el-table  height='100%'   ref='table' v-else header-align='left' :data="tableData"   @row-click="tableRowClick"
        @select='tableHandlerSelect'
        @select-all='tableHandlerSelectAll'
@@ -50,6 +56,19 @@
 </template>
 
 <script>
+/**render参数
+ * [
+ *   {prop:'roleName',label:this.$t('role.roleName'),formatter:Fun},
+ *   {label:'String',scope:[ //内部按钮写法
+ *                  { 
+ *                      type:String,//按钮类型
+ *                      name:String||Function,//按钮名字
+ *                      click:Function,//按钮点击事件
+ *                      v_show:Function，//按钮显隐
+ *                  },
+ *     },
+ *   ]
+ */
     export default { 
         name: 'Grid',
         props: {
@@ -108,8 +127,9 @@
                    case 'text':
                         return 'text'
                        break;
-                   
-               
+                   default:
+                        return 'text'
+                       break;
                }
            },
              /**
