@@ -1,12 +1,13 @@
 <template>
     <div class='Grid'>
 <!-- v-if render入参表格 -->
-       <el-table ref='table'  header-align='left'  height='100%' 
+       <el-table ref='table'  header-align='left' 
        @row-click="tableRowClick"
        @select='tableHandlerSelect'
        @select-all='tableHandlerSelectAll'
        @selection-change='tableSelectionChange'
        :row-class-name="tableRowClassName"
+       :max-height="440"
       :data="tableData">
 
         <!-- 表格前部 -->

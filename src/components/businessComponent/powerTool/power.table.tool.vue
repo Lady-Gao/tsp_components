@@ -1,12 +1,12 @@
 <template>
 	<div class="cv-table-tool">
-		<span type="success" v-show="modify" @click.native="modifyEvent()" v-if="isModify">{{$t('power.modify')}}</span>
-		<span type="danger" v-show="remove" @click.native="removeEvent()" v-if="isRemove">{{$t('power.remove')}}</span>
-		<span type="warning" v-show="resend" @click.native="resendEvent()" v-if="isResend">{{$t('power.resend')}}</span>
-		<span type="success" v-show="sendAdd" @click.native="sendAddEvent()" v-if="isSendadd">{{$t('power.sendAdd')}}</span>
-		<span type="success" v-show="sendEdit" @click.native="sendEditEvent()" v-if="isSendedit">{{$t('power.sendEdit')}}</span>
-		<span type="success" v-show="sendDown" @click.native="sendDownEvent()" v-if="isSenddown">{{$t('power.sendDown')}}</span>
-		<span type="success" v-show="sendResert" @click.native="resetEvent()" v-if="isSendResert">{{$t('power.sendResert')}}</span>
+		<span class="blue" v-show="modify" @click="modifyEvent()" v-if="isModify">{{$t('power.modify')}}</span>
+		<span class="red" v-show="remove" @click="removeEvent()" v-if="isRemove">{{$t('power.remove')}}</span>
+		<span class="blue1" v-show="resend" @click="resendEvent()" v-if="isResend">{{$t('power.resend')}}</span>
+		<span class="green" v-show="sendAdd" @click="sendAddEvent()" v-if="isSendadd">{{$t('power.sendAdd')}}</span>
+		<span class="red1" v-show="sendEdit" @click="sendEditEvent()" v-if="isSendedit">{{$t('power.sendEdit')}}</span>
+		<span class="red2" v-show="sendDown" @click="sendDownEvent()" v-if="isSenddown">{{$t('power.sendDown')}}</span>
+		<span class="green" v-show="sendResert" @click="resetEvent()" v-if="isSendResert">{{$t('power.sendResert')}}</span>
 	</div>
 </template>
 
@@ -37,7 +37,7 @@ export default {
     },
     isSenddown: {
       type: Boolean,
-      default: true
+      default: false
     },
     isSendResert: {
       type: Boolean,
@@ -88,7 +88,7 @@ export default {
               return (this.sendEdit = false);
             case "sendDown":
               return (this.sendDown = true);
-            case "sendResert":
+            case "reset":
               return (this.sendResert = true);
           }
         });
@@ -112,7 +112,7 @@ export default {
       this.$emit("sendDown");
     },
     resetEvent() {
-      this.$emit("sendResert");
+      this.$emit("reset");
     },
   },
   mounted() {
@@ -133,5 +133,32 @@ export default {
 <style lang="scss">
 .cv-table-tool {
   display: inline;
+  span{
+    padding:0px 8px;
+    border-right: 1px solid rgba(0,0,0,0.09);
+    font-size: 14px;
+    cursor: pointer;
+  }
+  span:last-child{
+    border: 0px;
+  }
+   .blue{
+      color: #008FFF;
+    }
+    .blue1{
+      color: #62EBDE;
+    }
+    .green{
+      color: #00C900;
+    }
+    .red{
+      color: #FF4200;
+    }
+    .red1{
+      color: #FF0099;
+    }
+    .red2{
+      color: #7E19D9;
+    }
 }
 </style>
