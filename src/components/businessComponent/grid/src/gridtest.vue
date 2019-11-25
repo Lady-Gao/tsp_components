@@ -15,7 +15,7 @@
         <el-table-column  align="left" showOverflowTooltip v-for="item in render" :key='item.prop'    :label="item.label"  :prop='item.prop'   :min-width="item.width||100" :formatter='item.formatter||null'>
             </el-table-column>
         <!-- 表格后部 -->
-        <slot name='footer'></slot>
+        <slot name='opertion'></slot>
 
        </el-table>
 
