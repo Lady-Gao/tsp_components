@@ -1,59 +1,45 @@
 <template>
     <div class='Grid'>
-<!-- 入参表格 -->
-       <el-table ref='table' v-if='render' header-align='left' 
+<!-- v-if render入参表格 -->
+       <el-table ref='table'  header-align='left' 
        @row-click="tableRowClick"
        @select='tableHandlerSelect'
        @select-all='tableHandlerSelectAll'
        @selection-change='tableSelectionChange'
        :row-class-name="tableRowClassName"
-       max-height="440px"
+       :max-height="440"
       :data="tableData">
-      <!-- 是否启用多选表格 -->
-        <el-table-column v-if='selection' type="selection"  width="55">
-        </el-table-column>
-        <el-table-column  align="left" showOverflowTooltip v-for="item in render" :key='item.prop'    :label="item.label"     :min-width="item.width||100">
-                <template v-slot="scope" >
-                    <!-- 没有按钮 -->
-                    <span v-if='!item.scope'>
-                        {{item.formatter?item.formatter(scope.row):scope.row[item.prop]}}
-                        </span>
-                    <!-- 有按钮 -->
-                    <div v-else style='display: flex;'>
-                        <el-button  v-for='(btn,idx) in item.scope' :key='idx' size='mini' :type='btnType(btn.type)' @click.native='btn.click(scope.row)'>
-                            {{btn.type}} 
-                        </el-button>
-                    </div>
-                </template>
+
+        <!-- 表格前部 -->
+        <slot ></slot>
+        <!-- render模板 -->
+        <el-table-column  align="left" showOverflowTooltip v-for="item in render" :key='item.prop'    :label="item.label"  :prop='item.prop'   :min-width="item.width||100" :formatter='item.formatter||null'>
             </el-table-column>
+        <!-- 表格后部 -->
+        <slot name='footer'></slot>
+
        </el-table>
-<!-- 自定义表格内容 -->
-        <el-table    ref='table' v-else header-align='left' :data="tableData"   @row-click="tableRowClick"
-       @select='tableHandlerSelect'
-       @select-all='tableHandlerSelectAll'
-       @selection-change='tableSelectionChange'
-       :row-class-name="tableRowClassName"
-        max-height="440px"
-        >
-            <slot></slot>
-        </el-table>
+
 
 <!-- 分页 -->
   <el-pagination background v-if='currentPage&&data.total>10' class='pagination'
       @size-change="handleSizeChange"
-      small
       @current-change="handleCurrentChange"
       :current-page="currentPage"
-     
       :page-sizes="[10, 20, 30,40, 50]"
       :page-size="data.size||0"
-      layout="total, sizes, prev, pager, next"
+      layout="total,prev, pager, next,sizes, jumper"
       :total="data.total||0">
     </el-pagination>
     </div> 
 </template>
 
 <script>
+/**render参数
+ * [
+ *   {prop:'roleName',label:this.$t('role.roleName'),formatter:Fun},
+ *   ]
+ */
     export default { 
         name: 'Grid',
         props: {
@@ -112,8 +98,9 @@
                    case 'text':
                         return 'text'
                        break;
-                   
-               
+                   default:
+                        return 'text'
+                       break;
                }
            },
              /**
@@ -191,7 +178,6 @@
     }
     .pagination{
         float: right;
-        margin: 20px 0px;
     }
 }
 </style>
