@@ -1,4 +1,4 @@
-import Grid from './src/grid.vue'
+import Grid from './src/gridtest.vue'
 Grid.install = function (Vue) {
     Vue.component(Grid.name, Grid);
 }
