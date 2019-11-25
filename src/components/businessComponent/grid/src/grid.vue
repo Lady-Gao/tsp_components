@@ -1,12 +1,13 @@
 <template>
     <div class='Grid'>
 <!-- 入参表格 -->
-       <el-table ref='table' v-if='render' header-align='left'  height='100%' 
+       <el-table ref='table' v-if='render' header-align='left' 
        @row-click="tableRowClick"
        @select='tableHandlerSelect'
        @select-all='tableHandlerSelectAll'
        @selection-change='tableSelectionChange'
        :row-class-name="tableRowClassName"
+       max-height="440px"
       :data="tableData">
       <!-- 是否启用多选表格 -->
         <el-table-column v-if='selection' type="selection"  width="55">
@@ -27,23 +28,26 @@
             </el-table-column>
        </el-table>
 <!-- 自定义表格内容 -->
-        <el-table  height='100%'   ref='table' v-else header-align='left' :data="tableData"   @row-click="tableRowClick"
+        <el-table    ref='table' v-else header-align='left' :data="tableData"   @row-click="tableRowClick"
        @select='tableHandlerSelect'
        @select-all='tableHandlerSelectAll'
        @selection-change='tableSelectionChange'
        :row-class-name="tableRowClassName"
-         style="width: 100%">
+        max-height="440px"
+        >
             <slot></slot>
         </el-table>
 
 <!-- 分页 -->
   <el-pagination background v-if='currentPage&&data.total>10' class='pagination'
       @size-change="handleSizeChange"
+      small
       @current-change="handleCurrentChange"
       :current-page="currentPage"
+     
       :page-sizes="[10, 20, 30,40, 50]"
       :page-size="data.size||0"
-      layout="total,prev, pager, next,sizes, jumper"
+      layout="total, sizes, prev, pager, next"
       :total="data.total||0">
     </el-pagination>
     </div> 
@@ -187,6 +191,7 @@
     }
     .pagination{
         float: right;
+        margin: 20px 0px;
     }
 }
 </style>
