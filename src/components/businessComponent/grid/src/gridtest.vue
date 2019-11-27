@@ -2,6 +2,8 @@
     <div class='Grid'>
 <!-- v-if render入参表格 -->
        <el-table ref='table'  header-align='left' 
+       highlight-current-row
+        @current-change="handleCurrent"
        @row-click="tableRowClick"
        @select='tableHandlerSelect'
        @select-all='tableHandlerSelectAll'
@@ -16,7 +18,7 @@
         <el-table-column  align="left" showOverflowTooltip v-for="item in render" :key='item.prop'    :label="item.label"  :prop='item.prop'   :min-width="item.width||100" :formatter='item.formatter||null'>
             </el-table-column>
         <!-- 表格后部 -->
-        <slot name='footer'></slot>
+        <slot name='opertion'></slot>
 
        </el-table>
 
@@ -57,11 +59,14 @@
        data(){
            return {
                currentPage:0,
-               tableData:[]
+               tableData:[],
+               currentRow:''
            }
        },
        watch:{
            data(val) {
+                   debugger
+
                //有分页
                if(val&&val.records){
                    this.tableData = val.records;
@@ -80,6 +85,9 @@
        methods: {
            tableRowClassName({row, rowIndex}) {
                 return this.rowClass;
+            },
+            handleCurrent(val) {
+                this.currentRow = val;
             },
            /**
             * 根据类型修改按钮type
