@@ -24,15 +24,17 @@
 
 
 <!-- 分页 -->
-  <el-pagination background v-if='currentPage&&data.total>10' class='pagination'
-      @size-change="handleSizeChange"
-      @current-change="handleCurrentChange"
-      :current-page="currentPage"
-      :page-sizes="[10, 20, 30,40, 50]"
-      :page-size="data.size||0"
-      layout="total,prev, pager, next,sizes, jumper"
-      :total="data.total||0">
-    </el-pagination>
+    <el-pagination :total="data.total||0"  background
+        class="pagination"
+        layout="total, jumper,sizes,  prev,slot, next" 
+        @size-change="handleSizeChange"
+        @current-change="handleCurrentChange"
+        v-if='currentPage&&data.total>10'
+        :page-size="data.size||0"
+        :current-page="currentPage"
+        :page-sizes="[10, 20, 30,40, 50]">
+            <span style = 'line-height: 30px' > {{this.currentPage}}/ {{data.pages}}</span >
+        </el-pagination>
     </div> 
 </template>
 
@@ -186,6 +188,11 @@
     }
     .pagination{
         float: right;
+        margin-top:20px;
+        .el-pagination__jump{
+            height: 30px;
+            line-height: 30px;
+        }
     }
 }
 </style>
