@@ -1,7 +1,7 @@
-import TabsTree from './src/tabs-list.vue'
+import tree from './src/tree.vue'
 
-TabsTree.install = function (Vue) {
-    Vue.component(TabsTree.name, TabsTree);
+tree.install = function (Vue) {
+    Vue.component(tree.name, tree);
 }
 
-export default TabsTree;
+export default tree;

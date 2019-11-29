@@ -17,7 +17,7 @@
 </template>
 
 <script>
-import BaseTree from '../../../component-utils/tree/js/base-tree';
+import BaseTree from './js/base-tree';
 import dom from '../../../../utils/dom';
 export default {
     name: 'Tree',
