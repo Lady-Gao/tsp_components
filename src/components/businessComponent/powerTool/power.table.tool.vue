@@ -70,7 +70,6 @@ export default {
     isPower(data) {
       data &&
         data.forEach(val => {
-          console.log(val)
           switch (val) {
             case "search":
               return (this.search = true);

@@ -1,10 +1,11 @@
 {
   "name": "tsp_components",
-  "version": "0.1.36",
+  "version": "0.1.52",
   "scripts": {
     "dev": "vue-cli-service serve",
-    "dev-build": "vue-cli-service build --mode production",
-    "lint": "vue-cli-service lint"
+    "build": "vue-cli-service build",
+    "lint": "vue-cli-service lint",
+    "build-file": "vue-cli-service build --target lib --name test_Components --dest lib ./index.js"
   },
   "dependencies": {
     "babel-preset-env": "^1.7.0",
@@ -49,7 +50,7 @@
     "last 2 versions"
   ],
   "description": "#### 进入cvtspweb 打开终端",
-  "main": "index.js",
+  "main": "lib/test_Components.umd.min.js",
   "repository": {
     "type": "git",
     "url": "http://git.cvtsp.com/Cvnavi_Web/TSP_Components"

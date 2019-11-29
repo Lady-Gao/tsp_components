@@ -156,9 +156,11 @@ export default class GaoDe {
      * @param {*} views [object Array]  [marker, marker ...]
      * @memberof gaodeMap
      */
-    setBastView(views) {
+    setBestView(views) {
         if (toString.call(views) === '[object Array]') {
             this.map.setFitView(views);
+        }else{
+            this.map.setFitView()
         }
     }
 
@@ -252,73 +254,87 @@ export default class GaoDe {
             });
             this.setBastView([liner])
         return liner
-        // } else {
-        //     return null;
-        // }
     }
 
     /**
      * 创建圆Circle
      * @param {object} overlayOptions 
+     * points
+     * style
      */
     _createCircle(overlayOptions) {
-        if (overlayOptions instanceof Circle) {
-            let point = this.point(overlayOptions.point);
+            let point = this.point(overlayOptions.points);
+            let style = overlayOptions.style||{
+                strokeColor: '#20a0ff',
+                fillColor: '#fff',
+                fillOpacity: 0.5,
+                strokeWeight: 2,
+                strokeOpacity: 0.5,
+            }
             return new AMap.Circle({
                 map: this.map,
                 center: point,
-                ...overlayOptions.style
+                radius: parseFloat(overlayOptions.radius),
+                ...style
             });
-        } else {
-            return null;
-
-        }
 
     }
     /**
      * 创建矩形Rectangle
-     * @param {object} overlayOptions 
-     */
+       * @param {object} overlayOptions 
+       * points
+       * style
+       */
     _createRectangle(overlayOptions) {
-        if (overlayOptions instanceof Rectangle) {
             let leftBottom = this.point({
-                    lng: overlayOptions.minLng,
-                    lat: overlayOptions.maxLat
+                    lng: overlayOptions.points.minLng,
+                    lat: overlayOptions.points.maxLat
                 }),
                 rightTop = this.point({
-                    lng: overlayOptions.maxLng,
-                    lat: overlayOptions.minLat
+                    lng: overlayOptions.points.maxLng,
+                    lat: overlayOptions.points.minLat
                 })
             let bounds = new AMap.Bounds(leftBottom, rightTop);
-
-            return new AMap.Rectangle({
+                let style = overlayOptions.style ||{
+                     fillColor: '#fff',
+                    fillOpacity: 0.5,
+                    strokeColor: '#20a0ff',
+                    strokeWeight: 2,
+                    strokeOpacity: 1,
+                }
+        return new AMap.Rectangle({
                 map: this.map,
                 bounds: bounds,
-                ...overlayOptions.style
+                ...style
             });
-        } else {
-            return null;
-        }
     }
 
     /**
      * 创建多边形Polygon
      * @param {object} overlayOptions 
+     * points
+     * style
      */
     _createPolygon(overlayOptions) {
-        if (overlayOptions instanceof Line) {
+      
             let points = [];
             overlayOptions.points.forEach(p => {
                 points.push(this.point(p));
             })
+            let style=overlayOptions.style||{
+                    fillColor: '#fff',
+                    fillOpacity: 0.5,
+                    strokeColor: "blue",
+                    strokeWeight: 2,
+                    strokeOpacity: 0.5
+
+            }
             return new AMap.Polygon({
                 map: this.map,
                 path: points,
-                ...overlayOptions.style
+                ...style
             });
-        } else {
-            return null;
-        }
+       
     }
 
     /**
@@ -572,7 +588,6 @@ export default class GaoDe {
       * 点击覆盖物打开弹窗
       * @param {object} overlay 
       * @param {string} content 
-      * @param {object} point 
       * @param {function} callback 
       * @param {object} options //弹框样式 
       */
@@ -589,6 +604,7 @@ export default class GaoDe {
        * @param {boolean} isEdit 
        */
       overlayEdit(overlay, isEdit) {
+          let self=this
          var nameArray = overlay.CLASS_NAME.split('.'),
              name = nameArray[nameArray.length - 1];
          if (name == 'Circle') {
@@ -597,7 +613,7 @@ export default class GaoDe {
              name = 'PolyEditor'
          }
          this.map.plugin(["AMap." + name], function () {
-             var edit = new AMap[name](this.map, overlay);
+             var edit = new AMap[name](self.map, overlay);
              isEdit ? edit.open() : edit.close();
          })
 

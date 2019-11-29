@@ -19,6 +19,8 @@ import PowerTool from "./src/components/businessComponent/powerTool/power.tool.v
 import TableTool from "./src/components/businessComponent/powerTool/power.table.tool.vue"
 import Dropdown from "./src/components/businessComponent/dropDown/index"
 import BodyContent from "./src/components/businessComponent/bodyContent/content.vue"
+import HelloWorld from "./src/components/businessComponent/HelloWorld/HelloWorld.js"
+import Tabs from "./src/components/businessComponent/tabs/index"
 
 import PasswordStrength from "./src/components/businessComponent/passwordStrength/passwordStrength.vue"
 const components = [
@@ -44,7 +46,9 @@ const components = [
     BreadCrumb,
     MapArea,
     CheckboxLists,
-    Operation
+    Operation,
+    HelloWorld,
+    Tabs
 ]
 const install = function (Vue) {
     console.log(components)
@@ -79,5 +83,7 @@ export default {
     BreadCrumb,
     MapArea,
     CheckboxLists,
-    Operation
+    Operation,
+    HelloWorld,
+    Tabs
 }
