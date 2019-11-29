@@ -13,7 +13,6 @@ import Icon from "./src/components/businessComponent/icon/index";
 import BreadCrumb from "./src/components/businessComponent/breadCrumb/index";
 import MapArea from './src/components/businessComponent/mapArea/index';
 import Scrollbar from "./src/components/component-utils/scrollbar/index";
-import Maptool from "./src/components/businessComponent/mapTool"
 import Operation from "./src/components/businessComponent/operation/index"
 import PowerTool from "./src/components/businessComponent/powerTool/power.tool.vue"
 import TableTool from "./src/components/businessComponent/powerTool/power.table.tool.vue"
@@ -21,6 +20,11 @@ import Dropdown from "./src/components/businessComponent/dropDown/index"
 import BodyContent from "./src/components/businessComponent/bodyContent/content.vue"
 import HelloWorld from "./src/components/businessComponent/HelloWorld/HelloWorld.js"
 import Tabs from "./src/components/businessComponent/tabs/index"
+import Dialogdrag from "./src/components/businessComponent/dialogdrag/dialogdrag.vue"
+import TabsTree from "./src/components/businessComponent/tree/index"
+import Tree from "./src/components/businessComponent/tree/src/tree.vue"
+import DropdownTree from "./src/components/businessComponent/dropdown-tree/index"
+import Maptool from "./src/components/businessComponent/mapTool/index"
 
 import PasswordStrength from "./src/components/businessComponent/passwordStrength/passwordStrength.vue"
 const components = [
@@ -42,13 +46,16 @@ const components = [
     LazyRender,
     Maptool,
     Icon,
-    // TabsTree,
+    TabsTree,
     BreadCrumb,
     MapArea,
     CheckboxLists,
     Operation,
     HelloWorld,
-    Tabs
+    Tabs,
+    Dialogdrag,
+    DropdownTree,
+    Tree
 ]
 const install = function (Vue) {
     console.log(components)
@@ -79,11 +86,14 @@ export default {
     LazyRender,
     Maptool,
     Icon,
-    // TabsTree,
+    TabsTree,
     BreadCrumb,
     MapArea,
     CheckboxLists,
     Operation,
     HelloWorld,
-    Tabs
+    Tabs,
+    Dialogdrag,
+    DropdownTree,
+    Tree
 }

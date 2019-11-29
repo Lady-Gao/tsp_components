@@ -1,4 +1,4 @@
-import Maptool from "./src/map.tool";
+import Maptool from "./src/map.tool.vue";
 Maptool.install = function (Vue) {
     Vue.component(Maptool.name, Maptool);
 }

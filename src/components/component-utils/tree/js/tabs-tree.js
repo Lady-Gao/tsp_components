@@ -104,7 +104,7 @@ export default {
             immediate: true,
             handler(val) {
                 this.store.vehicles = val;
-                    this.store.vehiclesArray = this._ObjectTransferArray(val);
+                this.store.vehiclesArray = this._ObjectTransferArray(val);
             }
         }
     },
@@ -114,12 +114,17 @@ export default {
          * @param {Object} obj
          */
         _ObjectTransferArray(obj) {
-            
             var results = [];
-            Object.keys(obj).forEach(val => {
-                results.push(val);
-            });
-
+            //直接可使用数组的情况{isArray:[id,id,id....]}
+            if (obj.isArray) {
+                results= obj.isArray
+            }else{
+            //是数组对象的情况{[],[],[]...}
+                 Object.keys(obj).forEach(val => {
+                     results.push(val);
+                 });
+            }
+           
             return results;
         }
     }

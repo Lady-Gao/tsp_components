@@ -1,0 +1,415 @@
+/*-------------------------------------
+cv-ztree Style using fontawesome instead of images
+
+version:    1.1
+author:     Mike King
+email:      mikkelking @ hotmail . com
+website:    http://code.google.com/p/jquerytree/
+
+-------------------------------------*/
+/* Definitions ----------------------*/
+/* End of Definitions ---------------*/
+/* Imports  -------------------------*/
+/* End of Imports  ------------------*/
+@import '../../../../../assets/css/element-variables.scss';
+
+@font-face {
+    font-family: "iconfont";
+    src: url('../../../../../assets/fonts/iconfont.eot?t=1530848468436');
+    /* IE9*/
+    src: url('../../../../../assets/fonts/iconfont.eot?t=1530848468436#iefix') format('embedded-opentype'),
+        /* IE6-IE8 */
+         url('data:application/x-font-woff;charset=utf-8;base64,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') format('woff'),
+    /* chrome, firefox */
+        url('../../../../../assets/fonts/iconfont.ttf?t=1530848468436') format('truetype'),
+        /* chrome, firefox, opera, Safari, Android, iOS 4.2+*/
+        url('../../../../../assets/fonts/iconfont.svg?t=1530848468436#el-icon') format('svg');
+
+
+}
+$color: #606266;
+$currentColor: #e4e7ed;
+.cv-ztree * {
+  padding: 0;
+  margin: 0;
+  font-size: 14px;
+  font-family: Microsoft YaHei;
+}
+.cv-ztree {
+  margin: 0;
+  padding: 5px;
+}
+.cv-ztree li {
+  padding: 0;
+  margin: 0;
+  list-style: none;
+  line-height: 25px;
+  text-align: left;
+  white-space: nowrap;
+  outline: 0;
+}
+.cv-ztree li ul {
+  margin: 0px;
+  padding: 0 0 0 18px;
+}
+.cv-ztree li a {
+  padding-right: 3px;
+  margin: 0;
+  cursor: pointer;
+  height: 23px;
+  background-color: transparent;
+  text-decoration: none;
+  vertical-align: top;
+  display: inline-block;
+  color: #606266;
+}
+.cv-ztree li a input.rename {
+  height: 14px;
+  width: 80px;
+  padding: 0;
+  margin: 0;
+  color: #af0000;
+  background-color: #ffffff;
+  font-size: 12px;
+  border: 1px #585956 solid;
+  *border: 0px;
+}
+.cv-ztree li a.curSelectedNode {
+  padding-top: 0px;
+  height: 23px;
+  opacity: 0.8;
+  background: $currentColor;
+}
+.cv-ztree li a.curSelectedNode_Edit {
+  padding-top: 0px;
+  background-color: transparent;
+  color: #ffff00;
+  height: 17px;
+  opacity: 0.8;
+}
+.cv-ztree li a.tmpTargetNode_inner {
+  padding-top: 0px;
+  background-color: #aaa;
+  color: #ffff00;
+  height: 17px;
+  border: 1px #666 solid;
+  opacity: 0.8;
+  filter: alpha(opacity=80);
+}
+.cv-ztree li span {
+  line-height: 20px;
+  padding-left: 3px;
+  margin-right: 2px;
+  background-color: transparent;
+}
+.cv-ztree li span.button {
+  line-height: 0;
+  margin: 0;
+  padding-left: 3px;
+  width: 15px;
+  height: 17px;
+  display: inline-block;
+  vertical-align: text-top;
+  border: 0px solid;
+  cursor: pointer;
+  outline: none;
+  background-color: transparent;
+  background-repeat: no-repeat;
+  background-attachment: scroll;
+}
+.cv-ztree li span.button::before {
+  font-family: FontAwesome;
+  padding-top: 10px;
+}
+//下三角
+.cv-ztree li span.button.noline_close:before {
+  content: '\e600';
+  font-family:"iconfont" !important;
+  display: inline-block;
+}
+//右箭头
+.cv-ztree li span.button.noline_open:before {
+  content: '\e69b';
+  font-family:"iconfont" !important;
+  display: inline-block;
+}
+.cv-ztree li span.button.chk {
+  margin: 0px;
+  cursor: auto;
+  width: 15px;
+  display: inline-block;
+  padding-top: 10px;
+  padding-left: 2px;
+}
+/* 没有勾选的状态 */
+.cv-ztree li span.button.chk.checkbox_false_full::before {
+  content: "\e634";
+  color: $color;
+  font-family:"iconfont" !important;
+}
+.cv-ztree li span.button.chk.checkbox_false_full_focus::before {
+  content: "\e634";
+  color: $--color-primary;
+  font-family:"iconfont" !important;
+}
+.cv-ztree li span.button.chk.checkbox_false_part::before {
+  content: "\e665";
+  color: $color;
+  font-family:"iconfont" !important;
+}
+.cv-ztree li span.button.chk.checkbox_false_part_focus::before {
+  content: "\e665";
+  color: $color;
+  font-family:"iconfont" !important;
+}
+.cv-ztree li span.button.chk.checkbox_false_disable::before {
+  content: "\e628";
+  color: #ccc;
+  font-family:"iconfont" !important;
+}
+
+/** 全选状态 */
+.cv-ztree li span.button.chk.checkbox_true_full::before {
+  content: "\e63d";
+  color: $--color-primary;
+  font-family:"iconfont" !important;
+}
+.cv-ztree li span.button.chk.checkbox_true_full_focus::before {
+  content: "\e63d";
+  color: $--color-primary;
+  font-family:"iconfont" !important;
+}
+
+/** 半勾选状态 */
+.cv-ztree li span.button.chk.checkbox_true_part::before {
+  content: "\e625";
+  color: $--color-primary;
+  font-family:"iconfont" !important;
+}
+.cv-ztree li span.button.chk.checkbox_true_part_focus::before {
+  content: "\e625";
+  color: $--color-primary;
+  font-family:"iconfont" !important;
+}
+
+/** 勾选禁用状态 */
+.cv-ztree li span.button.chk.checkbox_true_disable::before {
+  content: "\e63d";
+  color: #ccc;
+  font-family:"iconfont" !important;
+}
+.cv-ztree li span.button.chk.radio_false_full::before {
+  content: "\f10c";
+}
+.cv-ztree li span.button.chk.radio_false_full_focus::before {
+  content: "\f10c";
+  color: #ffff00;
+}
+.cv-ztree li span.button.chk.radio_false_part::before {
+  content: "\f10c";
+  color: #aaaaaa;
+}
+.cv-ztree li span.button.chk.radio_false_part_focus::before {
+  content: "\f10c";
+  color: #ffff00;
+}
+.cv-ztree li span.button.chk.radio_false_disable::before {
+  content: "\f1db";
+  color: #808080;
+}
+.cv-ztree li span.button.chk.radio_true_full::before {
+  content: "\f192";
+}
+.cv-ztree li span.button.chk.radio_true_full_focus::before {
+  content: "\f192";
+  color: #ffff00;
+}
+.cv-ztree li span.button.chk.radio_true_part::before {
+  content: "\f192";
+  color: #aaaaaa;
+}
+.cv-ztree li span.button.chk.radio_true_part_focus::before {
+  content: "\f192";
+  color: #aaaaaa;
+}
+.cv-ztree li span.button.chk.radio_true_disable::before {
+  content: "\f1db";
+  color: #808080;
+}
+.cv-ztree li span.button.switch {
+  width: 15px;
+  height: 17px;
+}
+.cv-ztree li span.button.root_open::before {
+  content: "\f078";
+  padding-top: 10px;
+  padding-left: 2px;
+  display: inline-block;
+}
+.cv-ztree li span.button.root_close::before {
+  content: "\f115";
+  padding-top: 10px;
+  padding-left: 2px;
+  display: inline-block;
+}
+.cv-ztree li span.button.roots_open::before {
+  content: "\f078";
+  padding-top: 10px;
+  padding-left: 2px;
+  display: inline-block;
+}
+.cv-ztree li span.button.roots_close::before {
+  content: "\f054";
+  padding-top: 10px;
+  padding-left: 2px;
+  display: inline-block;
+}
+.cv-ztree li span.button.center_open::before {
+  content: "\f078";
+  padding-top: 10px;
+  padding-left: 2px;
+  display: inline-block;
+}
+.cv-ztree li span.button.center_close::before {
+  content: "\f054";
+  padding-top: 10px;
+  padding-left: 2px;
+  display: inline-block;
+}
+.cv-ztree li span.button.bottom_open::before {
+  content: "\f078";
+  padding-top: 10px;
+  padding-left: 2px;
+  display: inline-block;
+}
+.cv-ztree li span.button.bottom_close::before {
+  content: "\f054";
+  padding-top: 10px;
+  padding-left: 2px;
+  display: inline-block;
+}
+.cv-ztree li span.button.root_docu {
+  background: none;
+}
+.cv-ztree li span.button.roots_docu::before {
+  content: "\f022";
+  padding-left: 2px;
+  display: inline-block;
+  color: #ffffff;
+}
+.cv-ztree li span.button.center_docu::before {
+  padding-top: 10px;
+  padding-left: 2px;
+  display: inline-block;
+  color: #ffffff;
+}
+.cv-ztree li span.button.bottom_docu::before {
+  padding-top: 10px;
+  padding-left: 2px;
+  display: inline-block;
+  color: #ffffff;
+}
+.cv-ztree li span.button.noline_docu {
+  background: none;
+}
+.cv-ztree li span.button.ico_open::before {
+  content: "\e6dc";
+  font-family:"iconfont" !important;
+  padding-top: 10px;
+  padding-left: 2px;
+  display: inline-block;
+}
+.cv-ztree li span.button.ico_close::before {
+  content: "\e607";
+  font-family:"iconfont" !important;
+  padding-top: 10px;
+  padding-left: 2px;
+  display: inline-block;
+}
+.cv-ztree li span.button.ico_docu::before {
+  content: "\2261";
+  padding-top: 12px;
+  padding-left: 5px;
+  display: inline-block;
+}
+.cv-ztree li span.button.edit {
+  margin-left: 4px;
+  margin-right: -1px;
+  vertical-align: top;
+  *vertical-align: middle;
+  padding-top: 10px;
+}
+.cv-ztree li span.button.edit::before {
+  content: "\f044";
+  font-family: FontAwesome;
+}
+.cv-ztree li span.button.remove {
+  margin-left: 4px;
+  margin-right: -1px;
+  vertical-align: top;
+  *vertical-align: middle;
+  padding-top: 10px;
+}
+.cv-ztree li span.button.remove::before {
+  content: "\f1f8";
+  font-family: FontAwesome;
+}
+.cv-ztree li span.button.add {
+  margin-left: 4px;
+  margin-right: -1px;
+  vertical-align: top;
+  *vertical-align: middle;
+  padding-top: 10px;
+}
+.cv-ztree li span.button.add::before {
+  content: "\f067";
+  font-family: FontAwesome;
+}
+.cv-ztree li span.button.ico_loading {
+  margin: 10px 0 0 4px;
+  *vertical-align: middle;
+}
+.cv-ztree li span.button.ico_loading::before {
+  content: "\e699";
+  font-family:"iconfont" !important;
+}
+ul.tmpTargetzTree {
+  background-color: #FFE6B0;
+  opacity: 0.8;
+  filter: alpha(opacity=80);
+}
+span.tmpzTreeMove_arrow {
+  width: 16px;
+  height: 17px;
+  display: inline-block;
+  padding: 0;
+  margin: 2px 0 0 1px;
+  border: 0 none;
+  position: absolute;
+  background-color: transparent;
+  background-attachment: scroll;
+}
+span.tmpzTreeMove_arrow::before {
+  content: "\f04b";
+  font-family: FontAwesome;
+  color: #ffff00;
+}
+ul.cv-ztree.zTreeDragUL {
+  margin: 0;
+  padding: 0;
+  position: absolute;
+  width: auto;
+  height: auto;
+  overflow: hidden;
+  background-color: #cfcfcf;
+  border: 1px #ffff00 dotted;
+  opacity: 0.8;
+  filter: alpha(opacity=80);
+}
+.ztreeMask {
+  z-index: 10000;
+  background-color: #cfcfcf;
+  opacity: 0.0;
+  filter: alpha(opacity=0);
+  position: absolute;
+}
