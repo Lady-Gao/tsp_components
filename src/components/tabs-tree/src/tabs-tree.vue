@@ -90,7 +90,7 @@ import togglePopover from '../../../utils/mixins/toggle-popover'
 import mergeMin from '../../../utils/mixins/merge-min'
 import confirm from '../../../utils/mixins/confirm'
 import TreeSearch from "../../tree-search/index"
-import TreeLists from "../../tree-list/iindex"
+import TreeLists from "../../tree-list/index"
 
 
 export default {

@@ -1,15 +1,19 @@
-/**
- * https://webpack.js.org/guides/dependency-management/#requirecontext
- * 不需要再使用Import方式来引用
- * 这里会require所有的模块从“./modules”目录下，关于require.context是webpack的api。可参考上面链接
- * 里面包含了resolve、keys、id三个属性
- * 如果分了多级目录，那么第二个参数为true
- */
-const modulesFiles = require.context("./src/components", true, /\.js$/);
-const modules = modulesFiles.keys().reduce((modules, modulePath) => {
-    console.log(modules,modulePath)
-    return modules;
+const modulesFiles = require.context("./src/components", true, /index.js$/);
+const modulearr = modulesFiles.keys().reduce((modules, modulePath) => {
+    const value = modulesFiles(modulePath);
+    modules[value.default.name] = value;
+    return modules
 }, {});
+const install = function (Vue) {
+    for (let key in modulearr) {
+        Vue.component(key, modulearr[key].default);
+    }
+    
+};
+    
+
 export default {
-    modules
+    version: '0.1.0',
+    install,
+    ...modulearr
 }
