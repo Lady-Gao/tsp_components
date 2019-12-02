@@ -15,7 +15,7 @@
         </el-input>
         <div slot="dropdown">
             <div class="dropdown-search">
-               <el-input :placeholder="$t('cvtsp.treeSearch.search')" v-model="search" clearable />
+               <el-input :placeholder="$t('power.search')" v-model="search" clearable />
             </div>
             <scrollbar 
                 tag="ul"

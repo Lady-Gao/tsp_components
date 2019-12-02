@@ -269,10 +269,10 @@ export default {
          * 全屏按钮事件
          */
         handlerFullScreen() {
+            console.log(this.mapTarget,"this.mapTargetthis.mapTargetthis.mapTarget")
             let dom = this.mapTarget.$el;
             service.requestFullScreen(dom);
         },
-       
     },
     created() {
         this.throttle = this.$service.throttle(_ => {
