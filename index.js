@@ -26,6 +26,19 @@ import DropdownTree from "./src/components/dropdown-tree/index"
 import Maptool from "./src/components/mapTool/index"
 
 import PasswordStrength from "./src/components/passwordStrength/index"
+
+
+const modulesFiles = require.context("./src/components", true, /index.js$/);
+
+var modulearr = {}
+
+modulesFiles.keys().reduce((modules, modulePath) => {
+    const value = modulesFiles(modulePath);
+    console.log(value)
+    modulearr[value.default.name] = value
+}, {});
+
+
 const components = [
     Dropdown,
     Grid,
@@ -56,41 +69,19 @@ const components = [
     Tree
 ]
 const install = function (Vue) {
-    console.log(components)
-    components.map(component => {
-        Vue.component(component.name, component);
-    });
-
+    // console.log(components)
+    // components.map(component => {
+    //     Vue.component(component.name, component);
+    // });
+    for (var key in modulearr) {
+        Vue.component(key, modulearr[key].default);
+    }
+    
 };
-export default {
+let index = {
     version: '0.1.0',
     install,
-    Dropdown,
-    Grid,
-    Ocx,
-    BodyContent,
-    H5Video,
-    FlashVideo,
-    PasswordStrength,
-    RadioLists,
-    ThemePicker,
-    Scrollbar,
-    TableTool,
-    PowerTool,
-    // Tabs,
-    GaodeMap,
-    BaiduMap,
-    GoogleMap,
-    LazyRender,
-    Maptool,
-    Icon,
-    TabsTree,
-    BreadCrumb,
-    MapArea,
-    CheckboxLists,
-    Operation,
-    Tabs,
-    Dialogdrag,
-    DropdownTree,
-    Tree
+    ...modulearr
 }
+console.log(index)
+export default index
