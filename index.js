@@ -1,11 +1,8 @@
 const modulesFiles = require.context("./src/components", true, /index.js$/);
-
-var modulearr = {}
-
-modulesFiles.keys().reduce((modules, modulePath) => {
+const modulearr = modulesFiles.keys().reduce((modules, modulePath) => {
     const value = modulesFiles(modulePath);
-    console.log(value)
-    modulearr[value.default.name] = value
+    modules[value.default.name] = value;
+    return modules
 }, {});
 
 
