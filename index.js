@@ -1,32 +1,44 @@
-import Grid from "./src/components/businessComponent/grid/index"
-import CheckboxLists from "./src/components/businessComponent/checkLists/index"
-import Ocx from "./src/components/businessComponent/video/ocx/ocx.vue";
-import H5Video from "./src/components/businessComponent/video/h5Video/h5Video.vue";
-import FlashVideo from "./src/components/businessComponent/video/flashVideo/flashVideo.vue";
-import RadioLists from "./src/components/businessComponent/radioLists/index";
-import ThemePicker from "./src/components/businessComponent/themePicker/index";
-import GaodeMap from "./src/components/businessComponent/map/gaode/gaode.vue";
-import BaiduMap from "./src/components/businessComponent/map/baidu/baidu.vue";
-import GoogleMap from "./src/components/businessComponent/map/google/index";
-import LazyRender from "./src/components/businessComponent/lazyRender/index";
-import Icon from "./src/components/businessComponent/icon/index";
-import BreadCrumb from "./src/components/businessComponent/breadCrumb/index";
-import MapArea from './src/components/businessComponent/mapArea/index';
-import Scrollbar from "./src/components/component-utils/scrollbar/index";
-import Operation from "./src/components/businessComponent/operation/index"
-import PowerTool from "./src/components/businessComponent/powerTool/power.tool.vue"
-import TableTool from "./src/components/businessComponent/powerTool/power.table.tool.vue"
-import Dropdown from "./src/components/businessComponent/dropDown/index"
-import BodyContent from "./src/components/businessComponent/bodyContent/content.vue"
-import HelloWorld from "./src/components/businessComponent/HelloWorld/HelloWorld.js"
-import Tabs from "./src/components/businessComponent/tabs/index"
-import Dialogdrag from "./src/components/businessComponent/dialogdrag/dialogdrag.vue"
-import TabsTree from "./src/components/businessComponent/tree/index"
-import Tree from "./src/components/businessComponent/tree/src/tree.vue"
-import DropdownTree from "./src/components/businessComponent/dropdown-tree/index"
-import Maptool from "./src/components/businessComponent/mapTool/index"
+import Grid from "./src/components/grid/index"
+import CheckboxLists from "./src/components/checkLists/index"
+import Ocx from "./src/components/ocx/index";
+import H5Video from "./src/components/h5Video/index";
+import FlashVideo from "./src/components/flashVideo/index";
+import RadioLists from "./src/components/radioLists/index";
+import ThemePicker from "./src/components/themePicker/index";
+import GaodeMap from "./src/components/gaode/index";
+import BaiduMap from "./src/components/baidu/index";
+import GoogleMap from "./src/components/google/index";
+import LazyRender from "./src/components/lazyRender/index";
+import Icon from "./src/components/icon/index";
+import BreadCrumb from "./src/components/breadCrumb/index"
+import MapArea from './src/components/mapArea/index';
+import Scrollbar from "./src/components/scrollbar/index";
+import Operation from "./src/components/operation/index"
+import PowerTool from "./src/components/powerTool/index"
+import TableTool from "./src/components/tableTool/idnex"
+import Dropdown from "./src/components/dropDown/index"
+import BodyContent from "./src/components/bodyContent/index"
+import Tabs from "./src/components/tabs/index"
+import Dialogdrag from "./src/components/dialogdrag/index"
+import TabsTree from "./src/components/tabs-tree/index"
+import Tree from "./src/components/tree/index"
+import DropdownTree from "./src/components/dropdown-tree/index"
+import Maptool from "./src/components/mapTool/index"
 
-import PasswordStrength from "./src/components/businessComponent/passwordStrength/passwordStrength.vue"
+import PasswordStrength from "./src/components/passwordStrength/index"
+
+
+const modulesFiles = require.context("./src/components", true, /index.js$/);
+
+var modulearr = {}
+
+modulesFiles.keys().reduce((modules, modulePath) => {
+    const value = modulesFiles(modulePath);
+    console.log(value)
+    modulearr[value.default.name] = value
+}, {});
+
+
 const components = [
     Dropdown,
     Grid,
@@ -51,49 +63,25 @@ const components = [
     MapArea,
     CheckboxLists,
     Operation,
-    HelloWorld,
     Tabs,
     Dialogdrag,
     DropdownTree,
     Tree
 ]
 const install = function (Vue) {
-    console.log(components)
-    components.map(component => {
-        Vue.component(component.name, component);
-    });
-
+    // console.log(components)
+    // components.map(component => {
+    //     Vue.component(component.name, component);
+    // });
+    for (var key in modulearr) {
+        Vue.component(key, modulearr[key].default);
+    }
+    
 };
-export default {
+let index = {
     version: '0.1.0',
     install,
-    Dropdown,
-    Grid,
-    Ocx,
-    BodyContent,
-    H5Video,
-    FlashVideo,
-    PasswordStrength,
-    RadioLists,
-    ThemePicker,
-    Scrollbar,
-    TableTool,
-    PowerTool,
-    // Tabs,
-    GaodeMap,
-    BaiduMap,
-    GoogleMap,
-    LazyRender,
-    Maptool,
-    Icon,
-    TabsTree,
-    BreadCrumb,
-    MapArea,
-    CheckboxLists,
-    Operation,
-    HelloWorld,
-    Tabs,
-    Dialogdrag,
-    DropdownTree,
-    Tree
+    ...modulearr
 }
+console.log(index)
+export default index
