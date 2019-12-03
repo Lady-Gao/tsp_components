@@ -4,12 +4,12 @@ module.exports = {
   pages: {
     index: {
       // page 的入口
-      entry: 'index.js',
+      entry: 'src/main.js',
       // 模板来源
       template: 'public/index.html',
       // 输出文件名
-      filename: 'index.js'
+      filename: 'index2.js'
     }
   },
-  publicPath:'index.js'
+  publicPath: 'src/main.js'
 }
