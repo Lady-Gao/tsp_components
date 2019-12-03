@@ -11,5 +11,26 @@ module.exports = {
       filename: 'index2.js'
     }
   },
+<<<<<<< HEAD
   publicPath: 'src/main.js'
+=======
+  css: {
+
+  // 启用 CSS modules
+  
+          modules:false,
+  
+  // 是否使用css分离插件
+  
+          extract:false,
+  
+  // 开启 CSS source maps，一般不建议开启
+  
+          sourceMap:false,
+  
+  // css预设器配置项
+  
+      },
+  publicPath:'index.js'
+>>>>>>> 5069cd778017d1228fb6c2e1764369ef893d6f9d
 }

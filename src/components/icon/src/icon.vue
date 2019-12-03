@@ -24,7 +24,7 @@ export default {
 }
 </script>
 
-<style lang="scss">
+<style lang="scss" >
 	.cv-icon-font{
 		padding: 0 3px;
 		cursor: pointer;

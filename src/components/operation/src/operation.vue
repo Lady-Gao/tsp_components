@@ -31,7 +31,7 @@ export default {
 }
 </script>
 
-<style lang="scss">
+<style lang="scss" >
 .cv-operation{
     .cv-operation-left {
         text-align: left;
