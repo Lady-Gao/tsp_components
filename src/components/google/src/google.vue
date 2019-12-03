@@ -74,6 +74,7 @@ export default {
 <style>
 .mapbase {
 	min-width: 100px;
-	min-height: 100px;
+    min-height: 100px;
+     height: 100%;
 }
 </style>

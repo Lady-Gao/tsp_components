@@ -11,9 +11,6 @@ module.exports = {
       filename: 'index2.js'
     }
   },
-<<<<<<< HEAD
-  publicPath: 'src/main.js'
-=======
   css: {
 
   // 启用 CSS modules
@@ -32,5 +29,4 @@ module.exports = {
   
       },
   publicPath:'index.js'
->>>>>>> 5069cd778017d1228fb6c2e1764369ef893d6f9d
 }
