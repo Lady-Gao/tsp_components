@@ -18,7 +18,7 @@ export default {
   }
 };
 </script>
-<style scoped lang='scss'>
+<style  lang='scss'>
 .bread{
   height:34px;
   line-height: 34px !important;
@@ -27,14 +27,14 @@ export default {
   font-size: 12px;
   border-bottom: 1px solid #e9e9e9;
   background: #fff;
-  .is-link{
+  .is-link >>>{
     font-family: PingFangSC-Regular;
     font-weight: 100 !important;
     color:#868789 !important;
   }
 
 }
-.el-breadcrumb__item:last-child .el-breadcrumb__inner{
+.el-breadcrumb__item:last-child .el-breadcrumb__inner {
    color: #1989FA !important;
  }
 </style>

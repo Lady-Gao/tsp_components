@@ -157,7 +157,7 @@
     }
 </script>
 
-<style lang='scss' scoped>
+<style lang='scss'>
 .Grid{
     height:100%;
     width:100%;
