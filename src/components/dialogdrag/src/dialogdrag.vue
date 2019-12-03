@@ -52,7 +52,7 @@
  
   }
 </script>
-<style scoped>
+<style >
   .divauto{
     margin:  10px auto 0 auto;
   }

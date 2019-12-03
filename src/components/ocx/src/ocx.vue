@@ -202,7 +202,7 @@ export default {
 };
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss" >
 .videoPort{
   height:80%;
 }

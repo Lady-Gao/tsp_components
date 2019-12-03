@@ -63,7 +63,7 @@ export default {
 };
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss" >
 .cv-password-strength {
   display: inline-block;
   .password-strength-item {

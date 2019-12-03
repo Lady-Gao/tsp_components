@@ -575,7 +575,7 @@ export default {
 }
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss" >
 // @import '../../../theme/color/index.scss';
 @mixin font-family {
     font-family: "iconfont" !important;

@@ -29,7 +29,7 @@ export default {
 }
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss" >
     @import '../css/arrow.scss';
     .cv-dropdown {
         position: relative;

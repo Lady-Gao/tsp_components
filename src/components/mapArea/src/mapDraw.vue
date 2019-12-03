@@ -215,7 +215,7 @@ export default {
 //     }
 }
 </script>
-<style lang="scss" scoped>
+<style lang="scss" >
 .formClass{
     .tool{
         margin-bottom: 18px;

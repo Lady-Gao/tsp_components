@@ -100,7 +100,7 @@ import videos from "../../videoJs/index";
     }
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss" >
 .video-area{
     width:100%;
     height: calc(100% - 55px);
