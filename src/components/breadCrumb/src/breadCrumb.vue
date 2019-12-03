@@ -18,7 +18,7 @@ export default {
   }
 };
 </script>
-<style scpoed lang='scss'>
+<style scoped lang='scss'>
 .bread{
   height:34px;
   line-height: 34px !important;
@@ -37,16 +37,5 @@ export default {
 .el-breadcrumb__item:last-child .el-breadcrumb__inner{
    color: #1989FA !important;
  }
-// .bread{
-//     padding-top: 4px;
-//     line-height: 34px;
-//     height: 34px;
-//     box-sizing: border-box;
-//     .el-icon-arrow-right:before {
-//         content: "/"  !important;
-//         color: #5f5a5a;
-//         margin: 0px 5px; 
-//     }
-// }
 </style>
 

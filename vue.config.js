@@ -11,5 +11,22 @@ module.exports = {
       filename: 'index.js'
     }
   },
+  css: {
+
+  // 启用 CSS modules
+  
+          modules:false,
+  
+  // 是否使用css分离插件
+  
+          extract:false,
+  
+  // 开启 CSS source maps，一般不建议开启
+  
+          sourceMap:false,
+  
+  // css预设器配置项
+  
+      },
   publicPath:'index.js'
 }

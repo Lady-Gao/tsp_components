@@ -116,7 +116,7 @@ export default {
 }
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
     .cv-checkboxgroup{
         $height: 36px;
         $font: 14px;

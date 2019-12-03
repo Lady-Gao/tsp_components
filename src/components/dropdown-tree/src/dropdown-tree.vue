@@ -335,7 +335,7 @@ export default {
 }
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
     @mixin arrow {
         width: 0;
         height: 0;

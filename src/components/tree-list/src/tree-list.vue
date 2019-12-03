@@ -268,7 +268,7 @@ export default {
 }
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
     .cv-treelists {
         @mixin automargin($updown: 0) {
             width: 92%;
