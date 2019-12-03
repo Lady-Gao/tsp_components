@@ -72,7 +72,6 @@ export default {
 </script>
 
 <style lang="scss">
-@import "@assets/css/var.scss";
 .cv-content {
   height: 100%;
 //   position: relative;
@@ -81,6 +80,7 @@ export default {
     top: 0;
     bottom: 0;
   }
+  $all-transition: all .3s cubic-bezier(.645,.045,.355,1) !default;
   $padding-10: 0 10px;
   .cv-content-aside {
     @include position;
