@@ -38,7 +38,7 @@ export default class googleMap{
     createdLable(point, text, options) {
         return {
             setStyle(opts){
-                
+
             }
         }
     }
@@ -90,7 +90,7 @@ export default class googleMap{
     /**
      *设置最佳视野
      *
-     * @param {*} views 
+     * @param {*} views
      * @memberof baiduMap
      */
     setBastView(views) {
@@ -108,7 +108,7 @@ export default class googleMap{
             });
             this.map.fitBounds(bounds);
         }
-        
+
     }
     /**
      *设置地图类型
@@ -137,7 +137,7 @@ export default class googleMap{
 
     /**
      * 在地图上添加覆盖物
-     * @param {object} overlay 
+     * @param {object} overlay
      */
     addOverlay(overlay) {
         this.markerArray.push(overlay);
@@ -145,7 +145,7 @@ export default class googleMap{
     }
     /**
      * 删除覆盖物
-     * @param {*} overlay 
+     * @param {*} overlay
      */
     removerOverlay(overlay) {
         overlay.setMap(null);
@@ -161,7 +161,7 @@ export default class googleMap{
     }
     /**
      * 创建标点marker
-     * @param {object} marker 
+     * @param {object} marker
      */
     _createMarker(overlayOptions) {
         // if (overlayOptions instanceof Marker) {
@@ -193,7 +193,7 @@ export default class googleMap{
     }
     /**
      * 创建线line
-     * @param {object} overlayOptions 
+     * @param {object} overlayOptions
      */
     _createLine(overlayOptions) {
         // if (overlayOptions instanceof Line) {
@@ -215,7 +215,7 @@ export default class googleMap{
     }
     /**
      * 创建圆Circle
-     * @param {object} overlayOptions 
+     * @param {object} overlayOptions
      */
     _createCircle(overlayOptions) {
         if (overlayOptions instanceof Circle) {
@@ -238,7 +238,7 @@ export default class googleMap{
     }
     /**
      * 创建矩形Rectangle
-     * @param {object} overlayOptions 
+     * @param {object} overlayOptions
      */
     _createRectangle(overlayOptions) {
         if (overlayOptions instanceof Rectangle) {
@@ -263,7 +263,7 @@ export default class googleMap{
     }
     /**
      * 创建多边形Polygon
-     * @param {object} overlayOptions 
+     * @param {object} overlayOptions
      */
     _createPolygon(overlayOptions) {
         if (overlayOptions instanceof Line) {
@@ -316,7 +316,7 @@ export default class googleMap{
 
     /**
      * 获取圆形数据
-     * @param {object} overlay 
+     * @param {object} overlay
      */
     getCricleOptions(overlay) {
         let options = {
@@ -329,7 +329,7 @@ export default class googleMap{
     }
     /**
      * 获取多边形及线的数据
-     * @param {object} overlay 
+     * @param {object} overlay
      */
     getPolygonOptions(overlay) {
         let options = {
@@ -340,7 +340,7 @@ export default class googleMap{
     }
     /**
      * 获取矩形数据
-     * @param {object} overlay 
+     * @param {object} overlay
      */
     getRectangleOptions(overlay) {
         let options = {};
@@ -358,7 +358,7 @@ export default class googleMap{
 
     /**
      * 开启绘制类
-     * @param {string} name 
+     * @param {string} name
      */
     _getDrawingManager() {
         let styleOptions = {
@@ -367,7 +367,7 @@ export default class googleMap{
             strokeWeight: 3, //边线的宽度，以像素为单位。
             strokeOpacity: 0.8, //边线透明度，取值范围0 - 1。
             fillOpacity: 0.6, //填充的透明度，取值范围0 - 1。
-            strokeStyle: 'solid' //边线的样式，solid或dashed 
+            strokeStyle: 'solid' //边线的样式，solid或dashed
         };
         return new BMapLib.DrawingManager(this.map, {
             isOpen: false, //是否开启绘制模式
@@ -391,8 +391,8 @@ export default class googleMap{
     }
     /**
      * 绘制内部私有函数
-     * @param {string} drawModel 
-     * @param {Function} eventFunction 
+     * @param {string} drawModel
+     * @param {Function} eventFunction
      */
     _drawUtils(drawModel, eventFunction) {
         this._openDrawingManagerByMode(drawModel);
@@ -400,7 +400,7 @@ export default class googleMap{
     }
     /**
      * 绘制圆形
-     * @param {Function} callback 
+     * @param {Function} callback
      */
     _drawCricle(callback) {
         this._drawUtils(BMAP_DRAWING_CIRCLE, _overlay => {
@@ -412,7 +412,7 @@ export default class googleMap{
     }
     /**
      * 绘制线
-     * @param {Function} callback 
+     * @param {Function} callback
      */
     _drawLine(callback) {
         this._drawUtils(BMAP_DRAWING_POLYLINE, _overlay => {
@@ -425,7 +425,7 @@ export default class googleMap{
     }
     /**
      * 绘制多边形
-     * @param {Function} callback 
+     * @param {Function} callback
      */
     _drawpolygon(callback) {
         this._drawUtils(BMAP_DRAWING_POLYGON, _overlay => {
@@ -439,7 +439,7 @@ export default class googleMap{
 
     /**
      * 绘制矩形
-     * @param {Function} callback 
+     * @param {Function} callback
      */
     _drawRectangle(callback) {
         this._drawUtils(BMAP_DRAWING_POLYLINE, _overlay => {
@@ -453,8 +453,8 @@ export default class googleMap{
 
     /**
      * 绘制覆盖物
-     * @param {string} type 
-     * @param {Function} callback 
+     * @param {string} type
+     * @param {Function} callback
      */
     drawOverlay(type, callback) {
         if (type === "cricle")
@@ -470,8 +470,8 @@ export default class googleMap{
 
     /**
      * 创建地图信息弹窗
-     * @param {string} content 
-     * @param {object} options 
+     * @param {string} content
+     * @param {object} options
      */
     createInfoWindow(content, options,point) {
         let infoWindow = new google.maps.InfoWindow({
@@ -483,9 +483,9 @@ export default class googleMap{
     }
     /**
      * 创建地图信息弹窗并打开
-     * @param {string} content 
-     * @param {object} options 
-     * @param {*} point 
+     * @param {string} content
+     * @param {object} options
+     * @param {*} point
      */
     createAndOpenInfoWindow(content, options, point) {
         let infoWindow = this.infoWindow(content,options, point);
@@ -495,26 +495,26 @@ export default class googleMap{
     }
     /**
      * 在地图上打开信息弹窗
-     * @param {object} infoWindow 
-     * @param {*} point 
+     * @param {object} infoWindow
+     * @param {*} point
      */
     openInfoWindow(infoWindow, point) {
         infoWindow.open(this.map);
     }
     /**
      * 关闭信息弹窗
-     * @param {object} infoWindow 
+     * @param {object} infoWindow
      */
     closeInfoWindow(infoWindow) {
         infoWindow.close();
     }
     /**
      * 点击覆盖物打开弹窗
-     * @param {object} overlay 
-     * @param {string} content 
-     * @param {object} point 
-     * @param {function} callback 
-     * @param {object} options 
+     * @param {object} overlay
+     * @param {string} content
+     * @param {object} point
+     * @param {function} callback
+     * @param {object} options
      */
     overlayClickOpenInfoWindow(overlay, content, point, callback, options) {
         this.addEventListener(overlay,'click',() =>{
@@ -528,16 +528,16 @@ export default class googleMap{
 
     /**
      * 覆盖物编辑
-     * @param {object} overlay 
-     * @param {boolean} isEdit 
+     * @param {object} overlay
+     * @param {boolean} isEdit
      */
     overlayEdit(overlay, isEdit) {
         overlay.setEditable(isEdit);
     }
     /**
      * 设置覆盖物位置
-     * @param {object} overlay 
-     * @param {*} point 
+     * @param {object} overlay
+     * @param {*} point
      */
 
     setPosition(overlay, point) {
@@ -546,8 +546,8 @@ export default class googleMap{
     }
     /**
      * 设置覆盖物旋转角
-     * @param {object} overlay 
-     * @param {number} Rotation 
+     * @param {object} overlay
+     * @param {number} Rotation
      */
     setRotation(overlay, Rotation) {
         let icon = overlay.getIcon();
@@ -564,8 +564,8 @@ export default class googleMap{
 
     /**
      * 地图工具类
-     * @param {string} type 
-     * @param {object} options 
+     * @param {string} type
+     * @param {object} options
      */
     mapTools(type, options) {
         alert("谷歌地图该功能需要收费，暂未开通");
@@ -579,8 +579,8 @@ export default class googleMap{
 
     /**
      * 地图聚合操作函数
-     * @param {string} type 
-     * @param {object} markers 
+     * @param {string} type
+     * @param {object} markers
      */
     markerClustererAction(type, markers) {
         if (toString.call(markers) === "[object Array]") {
@@ -610,9 +610,9 @@ export default class googleMap{
 
     /**
      * 添加事件监听
-     * @param {*} target 
-     * @param {*} eventName 
-     * @param {*} handler 
+     * @param {*} target
+     * @param {*} eventName
+     * @param {*} handler
      */
     addEventListener(target, eventName, handler) {
         if(eventName == "clickclose"){
@@ -622,9 +622,9 @@ export default class googleMap{
     }
     /**
      * 删除事件监听
-     * @param {*} target 
-     * @param {*} eventName 
-     * @param {*} handler 
+     * @param {*} target
+     * @param {*} eventName
+     * @param {*} handler
      */
     removeEventListener(target, eventName, handler) {
         if(eventName == "clickclose"){
@@ -636,7 +636,7 @@ export default class googleMap{
 
     /**
      * 设置地图的样式（自定义）
-     * @param {object} json 
+     * @param {object} json
      */
     setMapStyle(json) {
         this.map.setMapStyle({
