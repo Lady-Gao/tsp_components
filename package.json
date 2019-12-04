@@ -1,6 +1,6 @@
 {
   "name": "tsp_components",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "scripts": {
     "dev": "vue-cli-service serve",
     "build": "vue-cli-service build",
@@ -53,7 +53,7 @@
     "last 2 versions"
   ],
   "description": "#### 进入cvtspweb 打开终端",
-  "main": "index.js",
+  "main": "lib/test_Components.umd.min",
   "repository": {
     "type": "git",
     "url": "http://git.cvtsp.com/Cvnavi_Web/TSP_Components"

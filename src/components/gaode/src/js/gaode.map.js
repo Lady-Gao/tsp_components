@@ -248,10 +248,6 @@ export default class GaoDe {
                 path: points,
                 ...style
             });
-<<<<<<< HEAD
-=======
-            debugger
->>>>>>> 33e170a813bb7b90d9279e6424cf622cbdb4e2e5
             this.setBestView([liner])
         return liner
     }
