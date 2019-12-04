@@ -1,15 +1,15 @@
 <template>
-    <div :class="isToggleTree ? 'cv-tabs-vehiclelists isToggleTree':'cv-tabs-vehiclelists'">
+    <div :class="isToggleTree ? 'cv-tabs-vehiclelists isToggleTree':'cv-tabs-vehiclelists'" >
         <tabs :titles="titles" :is-scrollbar="true" class="cv-tabs-tree" v-model="activeName" type="border-card">
             <!-- 车辆树tabs -->
-            <tree-search 
+            <tree-search
                 ref="tree"
                 :vehicle-search="vehicleSearch"
                 @vehicle-choose-search="handlerVehicleSearch"
-                :data="tree" 
+                :data="tree"
                 :baseUrl='baseUrl'
                 :lazy="vehilceApi"
-                :is-check="isChecked" 
+                :is-check="isChecked"
                 :node-filter="nodeFilter"
                 :auto-param="autoParam"
                 :other-param="otherParam"
@@ -17,11 +17,11 @@
                 :limit-check="handlerLimitCheck"
                 @node-click="handlerTreeClick">
             </tree-search>
-           
+
 
             <!-- 车辆列表(多选／单选) -->
             <tree-lists ref="lists"
-                :search-api="listsApi" 
+                :search-api="listsApi"
                 :is-check="isChecked"
                 :online-monitor="onlineMonitor"
                 :vehicle-monitor="vehicleMonitor"
@@ -45,7 +45,7 @@
 
             <!-- 车辆关注(多选／单选) -->
             <tree-lists ref="attentions"
-                :search-api="attentionApi" 
+                :search-api="attentionApi"
                 :is-check="isChecked"
                 :online-monitor="onlineMonitor"
                 :vehicle-monitor="vehicleMonitor"
@@ -181,7 +181,7 @@ export default {
                 case 'ENTERPRISE': return this.monitor_enterpriseFleet(val, 1);
                 case 'ORGANIZATION': return this.monitor_enterpriseFleet(val, 2);
                 case 'FLEET': return this.monitor_enterpriseFleet(val, 3);
-                
+
             }
         }
     },
@@ -193,7 +193,7 @@ export default {
             this.$emit('vehicle-choose-search', val);
         },
 
-        /** 
+        /**
          * 树节点的点击事件
          * @param {Object} treeNode: 树的节点信息
         */
@@ -211,7 +211,7 @@ export default {
             if(_treeMethods) {
                 const { vehicleId, messageText } = val;
                 const node = _treeMethods.getNodeByParam('id', vehicleId);
-                
+
                 if(node) {
                     node.iconSkin = (messageText == this.$t('components.common.getLine')  ? 'online' : 'unline');
                     node.online = (messageText == this.$t('components.common.getLine')  ? true : false);
@@ -229,20 +229,20 @@ export default {
             if(_treeMethods) {
                 const { vehicleId, isAttention } = val;
                 const node = _treeMethods.getNodeByParam('id', vehicleId);
-                
+
                 if(node) {
                     const operation = document.getElementById(`operation-btn${node.id}`);
                     if(operation) {
                         const isAttention_icon = operation.querySelector('i');
-                        isAttention == 1 
+                        isAttention == 1
                         ? isAttention_icon.style.color = this.attention_color
                         : isAttention_icon.setAttribute('style', '');
                     }
-                    
+
                     node.isAttention = isAttention;
                     _treeMethods.updateNode(node);
-                   
-                }  
+
+                }
             }
         },
 
@@ -271,11 +271,11 @@ export default {
 
        /**
         * 新增车辆进行更新父节点上的车辆数字(Number) +1 -1
-        * @param {Object} val={} 
+        * @param {Object} val={}
         * @param {String} type = +1 -1
         */
         monitor_vehicle_updateParentNodeNumber(val, type) {
-            
+
             const _treeMethods = this.$refs['tree'].reference();
             // 获取当前车辆的所有父节点id(Array)
             var treePids = val.treePids.split(',');
@@ -289,11 +289,11 @@ export default {
                     count = treeNode.sumCount + Number(type),
                     sumCount = (count < 0 ? 0 : count);
 
-                    treeNode.sumCount = sumCount;  
+                    treeNode.sumCount = sumCount;
                     treeNode.text = text + `(${sumCount})`;
                     updateNode(treeNode);
                 }
-            })  
+            })
         },
 
         /**
@@ -307,7 +307,7 @@ export default {
             const { getNodeByParam, addNodes, removeNode, updateNode } = _treeMethods;
             switch(Number(type)) {
                 // 在该车辆的父节点下添加（fleed）
-                case 1: 
+                case 1:
                     var parentNode = getNodeByParam('id', fleetId);
                     parentNode && addNodes(parentNode, {
                         pId: fleetId,
@@ -329,7 +329,7 @@ export default {
                 break;
             }
         },
-        
+
         /**
          * 公司和车组的新增(+1)，删除(-1)， 修改(0)
          * @param {Number} type: 公司(1)，机构(2)和车组(3)的类型
@@ -339,7 +339,7 @@ export default {
             const { operation, pid, name, id } = val;
             if(!_treeMethods) return;
 
-            const { setInitialTree, getNodeByParam, addNodes, getAllNodes, removeNode, updateNode} 
+            const { setInitialTree, getNodeByParam, addNodes, getAllNodes, removeNode, updateNode}
             = _treeMethods;
 
             switch(operation){
@@ -378,10 +378,10 @@ export default {
             let template = '';
             const _this = this;
             const { type, isAttention } = treeNode;
-            
+
             if(type == 4) {
                 template = (
-                    isAttention == 1 
+                    isAttention == 1
                     ? `<i id="tree-collection" class="cv-icon-font el-icon-star-on" style="color:${_this.attention_color}"></i>`
                     : `<i id="tree-collection" class="cv-icon-font el-icon-star-on"></i>`
                 )
@@ -433,7 +433,7 @@ export default {
                 // 已经关注过，执行取消(cancel)操作
                 try {
                     const { flag } = await this.deleteVehicleAttentionInfo(id);
-                    this.handlerCollection_callback(flag,this.$t('cvcomponents.commontsp.cancel'));
+                    this.handlerCollection_callback(flag,this.$t('components.common.cancle'));
                 }
                 catch(e) {
                     this.$message.error(this.$t('components.common.Networkerror'));

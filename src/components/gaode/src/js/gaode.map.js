@@ -68,7 +68,7 @@ export default class GaoDe {
 
     /**
      * 本地搜索区域
-     * @param {string} location 
+     * @param {string} location
      */
     Geocoder(location) {
         this.setCity(location)
@@ -77,7 +77,7 @@ export default class GaoDe {
         //         map: _self.map
         //     });
         //     placeSearch.search(location, function(state, result) {
-        //        
+        //
         //         _self.removeOverlay(result.poiList.pois);
         //     });
         // });
@@ -103,7 +103,7 @@ export default class GaoDe {
         var text = new AMap.Text(_options);
         text.setStyle(_options.style)
         text.setOffset(new AMap.Pixel(_options.size.x, _options.size.y) )//设置文本偏移量)
-        text.setPosition(points) 
+        text.setPosition(points)
         return text;
     }
 
@@ -182,7 +182,7 @@ export default class GaoDe {
 
     /**
      * 在地图上添加覆盖物
-     * @param {object} overlay 
+     * @param {object} overlay
      */
     addOverlay(overlay) {
         let array = [];
@@ -192,7 +192,7 @@ export default class GaoDe {
     }
     /**
      * 删除覆盖物
-     * @param {*} overlay 
+     * @param {*} overlay
      */
     removeOverlay(overlay) {
         if (overlay) {
@@ -210,7 +210,7 @@ export default class GaoDe {
 
     /**
      * 创建标点marker
-     * @param {object} marker 
+     * @param {object} marker
      */
     _createMarker(overlayOptions) {
         // if (overlayOptions instanceof Marker) {
@@ -229,7 +229,7 @@ export default class GaoDe {
 
     /**
      * 创建线line
-     * @param {object} overlayOptions 
+     * @param {object} overlayOptions
      */
     _createLine(overlayOptions) {
            let points = [];
@@ -242,18 +242,20 @@ export default class GaoDe {
            overlayOptions.points.forEach(p => {
                points.push(this.point(p));
             });
+            // console.log(points,"pointspointspoints")
             let liner=new AMap.Polyline({
                 map: this.map,
                 path: points,
                 ...style
             });
-            this.setBastView([liner])
+            debugger
+            this.setBestView([liner])
         return liner
     }
 
     /**
      * 创建圆Circle
-     * @param {object} overlayOptions 
+     * @param {object} overlayOptions
      * points
      * style
      */
@@ -276,7 +278,7 @@ export default class GaoDe {
     }
     /**
      * 创建矩形Rectangle
-       * @param {object} overlayOptions 
+       * @param {object} overlayOptions
        * points
        * style
        */
@@ -306,12 +308,12 @@ export default class GaoDe {
 
     /**
      * 创建多边形Polygon
-     * @param {object} overlayOptions 
+     * @param {object} overlayOptions
      * points
      * style
      */
     _createPolygon(overlayOptions) {
-      
+
             let points = [];
             overlayOptions.points.forEach(p => {
                 points.push(this.point(p));
@@ -329,7 +331,7 @@ export default class GaoDe {
                 path: points,
                 ...style
             });
-       
+
     }
 
     /**
@@ -363,7 +365,7 @@ export default class GaoDe {
     /*===============================覆盖物绘制操作=========================================================== */
     /**
      * 获取圆形数据
-     * @param {object} overlay 
+     * @param {object} overlay
      */
     getCricleOptions(overlay) {
         var options = {
@@ -376,7 +378,7 @@ export default class GaoDe {
     }
     /**
      * 获取多边形及线的数据
-     * @param {object} overlay 
+     * @param {object} overlay
      */
     getPolygonOptions(overlay) {
         var options = {
@@ -388,7 +390,7 @@ export default class GaoDe {
     }
     /**
      * 获取矩形数据
-     * @param {object} overlay 
+     * @param {object} overlay
      */
     getRectangleOptions(overlay) {
         let options = {};
@@ -403,21 +405,21 @@ export default class GaoDe {
         options.overlay = overlay;
         return options;
     }
-   
+
     /**
      * 绘制内部私有函数
-     * @param {string} drawModel 
-     * @param {Function} eventFunction 
+     * @param {string} drawModel
+     * @param {Function} eventFunction
      */
     _drawUtils(drawModel, eventFunction) {
-        
+
           this.MouseTool.close(true) //关闭，并清除覆盖物
           this.MouseTool.on('draw', eventFunction)
           this.MouseTool[drawModel]();
     }
     /**
      * 绘制圆形
-     * @param {Function} callback 
+     * @param {Function} callback
      */
     _drawCricle(callback) {
         let _self = this;
@@ -436,7 +438,7 @@ export default class GaoDe {
     }
     /**
      * 绘制Marker
-     * @param {Function} callback 
+     * @param {Function} callback
      */
     _drawMarker(callback) {
         let _self = this;
@@ -450,7 +452,7 @@ export default class GaoDe {
     }
     /**
      * 绘制线
-     * @param {Function} callback 
+     * @param {Function} callback
      */
     _drawLine(callback) {
         let _self = this;
@@ -468,7 +470,7 @@ export default class GaoDe {
     }
     /**
      * 绘制多边形
-     * @param {Function} callback 
+     * @param {Function} callback
      */
     _drawpolygon(callback) {
         let _self = this;
@@ -487,7 +489,7 @@ export default class GaoDe {
 
     /**
      * 绘制矩形
-     * @param {Function} callback 
+     * @param {Function} callback
      */
     _drawRectangle(callback) {
         let _self = this;
@@ -512,11 +514,11 @@ export default class GaoDe {
     }
     /**
      * 绘制覆盖物
-     * @param {string} type 
-     * @param {Function} callback 
+     * @param {string} type
+     * @param {Function} callback
      */
     drawOverlay(type, callback) {
-         
+
         if (type === "circle")
             this._drawCricle(callback);
         else if (type === "line")
@@ -532,9 +534,9 @@ export default class GaoDe {
 
     /**
      * 创建地图信息弹窗
-     * @param {string} content 
-     * @param {object} options 
-     * @param {object} clb 使用自定义弹框 
+     * @param {string} content
+     * @param {object} options
+     * @param {object} clb 使用自定义弹框
      */
     createInfoWindow(content, options={}, clb=true) {
         let style = Object.assign(options, {
@@ -550,8 +552,8 @@ export default class GaoDe {
 
      /**
       * 在地图上打开信息弹窗(创建infoWindow对象)
-      * @param {object} infoWindow 
-      * @param {*} point 
+      * @param {object} infoWindow
+      * @param {*} point
       */
     openInfoWindow(point, content, options = {}, callback) {
           //样式
@@ -574,17 +576,17 @@ export default class GaoDe {
     }
     /**
      * 关闭信息弹窗
-     * @param {object} infoWindow 
+     * @param {object} infoWindow
      */
     closeInfoWindow(infoWindow) {
         infoWindow&&infoWindow.close()
     }
      /**
       * 点击覆盖物打开弹窗
-      * @param {object} overlay 
-      * @param {string} content 
-      * @param {function} callback 
-      * @param {object} options //弹框样式 
+      * @param {object} overlay
+      * @param {string} content
+      * @param {function} callback
+      * @param {object} options //弹框样式
       */
      overlayClickOpenInfoWindow(overlay, content, options = {}, callback=()=>{}) {
         this.addEventListener(overlay, 'click', (e)=>{
@@ -595,8 +597,8 @@ export default class GaoDe {
 
       /**
        * 覆盖物编辑
-       * @param {object} overlay 
-       * @param {boolean} isEdit 
+       * @param {object} overlay
+       * @param {boolean} isEdit
        */
       overlayEdit(overlay, isEdit) {
           let self=this
@@ -615,8 +617,8 @@ export default class GaoDe {
       }
        /**
         * 设置覆盖物位置
-        * @param {object} overlay 
-        * @param {*} point 
+        * @param {object} overlay
+        * @param {*} point
         */
        setPosition(overlay, point) {
            overlay.setPosition(point);
@@ -624,8 +626,8 @@ export default class GaoDe {
        }
        /**
         * 设置覆盖物图标
-        * @param {object} marker 
-        * @param {*} img 
+        * @param {object} marker
+        * @param {*} img
         */
        setIcon(marker, img) {
            marker.setIcon(
@@ -640,8 +642,8 @@ export default class GaoDe {
        }
        /**
         * 设置覆盖物旋转角
-        * @param {object} overlay 
-        * @param {number} Rotation 
+        * @param {object} overlay
+        * @param {number} Rotation
         */
        setRotation(overlay, Rotation) {
            overlay.setRotation(Rotation);
@@ -650,8 +652,8 @@ export default class GaoDe {
 
         /**
          * 地图工具类
-         * @param {string} type 
-         * @param {object} options 
+         * @param {string} type
+         * @param {object} options
          */
         mapTools(type, callback) {
             let _self = this;
@@ -691,7 +693,7 @@ export default class GaoDe {
                         }
                     }
                     this._drawUtils("marker",drawMarker);
-                    
+
                     // this.addEventListener(this.MouseTool, 'draw', this.drawMarker.bind(this))
                     // this.MouseTool.marker({
                     //     map: this.map
@@ -702,11 +704,11 @@ export default class GaoDe {
                         }
                     }
                     break;
-            
+
             }
-           
+
         }
-       
+
          //调用线路规划
          Driving(TruckValue ) {
             let _self = this;
@@ -718,7 +720,7 @@ export default class GaoDe {
                      map: _self.map,
                      policy: AMap.DrivingPolicy[TruckValue]
                  });
-                 
+
                  let startLngLat = [start.lng, start.lat];
                  let endLngLat = [end.lng, end.lat];
                  _self.driving.search(startLngLat, endLngLat, (e)=>{
@@ -741,7 +743,7 @@ export default class GaoDe {
                         this.map.remove([this.trffic[name]]);
                         delete this.trffic[name];
                     }
-                    
+
                 });
             }
             // this.trffic && this.map.remove([this.trffic]);
@@ -751,7 +753,7 @@ export default class GaoDe {
         }
          /**
           * 是否开启交通流量s
-          * @param {boolean} flag 
+          * @param {boolean} flag
           */
         //  setTrffic(flag) {
         //      if (flag) {
@@ -794,9 +796,9 @@ export default class GaoDe {
 
            /**
             * 添加事件监听
-            * @param {*} target 
-            * @param {*} eventName 
-            * @param {*} handler 
+            * @param {*} target
+            * @param {*} eventName
+            * @param {*} handler
             */
            addEventListener(target, eventName, handler) {
                 // 兼容百度的， 百度有clickclose ，高德没有(只有close)
@@ -807,9 +809,9 @@ export default class GaoDe {
            }
             /**
              * 删除事件监听
-             * @param {*} target 
-             * @param {*} eventName 
-             * @param {*} handler 
+             * @param {*} target
+             * @param {*} eventName
+             * @param {*} handler
              */
             removeEventListener(target, eventName, handler) {
                 if (eventName == 'clickclose') {
@@ -851,10 +853,10 @@ export default class GaoDe {
               /**
                * 多车监控巡航器初始化
                * @param {Object} obj: {
-               *        speed 
-               *        src 
-               *        name 
-               *        id 
+               *        speed
+               *        src
+               *        name
+               *        id
                *        path: [[116.405289, 39.904987]]
                *        path: [[lont, lat],[lont, lat]...]
                *      }
@@ -939,7 +941,7 @@ export default class GaoDe {
               *      name
               *      id
               *      path:[lont,lat]
-              *    } 
+              *    }
               */
              tradoExpand(obj) {
                  if (!this.pathSimplifierIns) return
@@ -975,5 +977,5 @@ export default class GaoDe {
                     //  this.navg1.moveToPoint(cursor.idx, cursor.tail);
                  }
              }
-          
+
 }

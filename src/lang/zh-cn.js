@@ -31,6 +31,7 @@ export default   {
             getLine:"上线",
             Networkerror:"网络错误!",
             FocusSuccess:"关注成功",
+            cancelFocusSuccess:"取消关注成功",
             FocusFail:"关注失败",
             edit:"编辑",
             moreThen:"该公司或车组下车辆超过",
