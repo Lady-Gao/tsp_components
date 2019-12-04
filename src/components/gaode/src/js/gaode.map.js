@@ -247,7 +247,7 @@ export default class GaoDe {
                 path: points,
                 ...style
             });
-            this.setBastView([liner])
+            this.setBestView([liner])
         return liner
     }
 

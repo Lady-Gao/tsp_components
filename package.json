@@ -1,10 +1,6 @@
 {
   "name": "tsp_components",
-<<<<<<< HEAD
-  "version": "0.1.66",
-=======
   "version": "0.2.0",
->>>>>>> 5069cd778017d1228fb6c2e1764369ef893d6f9d
   "scripts": {
     "dev": "vue-cli-service serve",
     "build": "vue-cli-service build",
