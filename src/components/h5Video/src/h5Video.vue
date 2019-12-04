@@ -256,7 +256,7 @@ import service from "../../../utils/service"
     }
 </script>
 
-<style scoped>
+<style >
 #player{
     height:100%;
     width:100%;

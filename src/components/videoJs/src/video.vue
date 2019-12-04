@@ -172,7 +172,7 @@
     };
 </script>
 
-<style lang="scss">
+<style lang="scss" >
     @import "./assets/video.source.css";
     .cv-video {
         $bg: rgba(33, 34, 33, 0.8);

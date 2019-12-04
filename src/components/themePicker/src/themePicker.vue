@@ -132,7 +132,7 @@ export default {
 }
 </script>
 
-<style>
+<style >
 .theme-picker .el-color-picker__trigger {
   vertical-align: middle;
 }

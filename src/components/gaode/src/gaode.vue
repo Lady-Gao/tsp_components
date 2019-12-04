@@ -1,7 +1,5 @@
 <template>
-    <div>
         <div class="cv-map" ref="map"></div>
-    </div>
 </template>
 
 <script>
@@ -109,6 +107,7 @@ export default {
 <style lang="scss">
    .cv-map{
     min-width: 500px;
-	min-height: 500px;
+    min-height: 500px;
+    height: 100%;
    }
 </style>

@@ -551,7 +551,7 @@ export default {
 }
 </script>
 
-<style lang="scss">
+<style lang="scss" >
 .cv-tabs-vehiclelists{
     height: 99.5%;
     width: 300px;
