@@ -553,7 +553,7 @@ export default {
 
 <style lang="scss" >
 .cv-tabs-vehiclelists{
-    height: 99.5%;
+    height: 82%;
     width: 300px;
     position: absolute;
     z-index: 170;

@@ -93,7 +93,7 @@ export default class googleMap{
      * @param {*} views
      * @memberof baiduMap
      */
-    setBastView(views) {
+    setBestView(views) {
         if(views.length){
             let points = [],bounds = new google.maps.LatLngBounds();
             if (toString.call(views) === '[object Array]') {
