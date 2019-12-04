@@ -248,7 +248,6 @@ export default class GaoDe {
                 path: points,
                 ...style
             });
-            debugger
             this.setBestView([liner])
         return liner
     }
