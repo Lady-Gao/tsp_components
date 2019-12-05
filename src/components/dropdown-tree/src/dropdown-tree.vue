@@ -9,7 +9,7 @@
             :disabled="disabled" 
             :placeholder="placeholder"
             @click.native="isToggle=true" 
-            size="small"
+            
             v-model.trim="treeContent">
             <i slot="suffix" class="el-input__icon el-icon-error removeCu" v-show='(treeContent && !disabled) ? true :false' @click='removeNode'></i>
         </el-input>

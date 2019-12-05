@@ -26,7 +26,7 @@ export default class BaseTree {
      * 初始化树的配置和方法
      * @param {Array} data: []
      */
-    initialTree(data, callback) {
+    initialTree(name,data, callback) {
         var data = this.iconsFilter({data});
         /**
          * $.fn.zTree.init(obj,zSettingJSON,zNodesArray)
@@ -35,7 +35,7 @@ export default class BaseTree {
          * zTree 的配置数据,
          * zTree 的节点数据
          */
-        $.fn.zTree.init(this.el, this.treeConfig(this.isCheck), this.setIsFirstNodesExpand(data, this.isExpand, this.isFreeze));
+        $.fn.zTree.init(this.el, this.treeConfig(this.isCheck,name), this.setIsFirstNodesExpand(data, this.isExpand, this.isFreeze));
         this.zTree = $.fn.zTree.getZTreeObj(this.treeId);//获取zTree 对象
 
         typeof callback === 'function' && callback(this.zTree);
@@ -46,12 +46,12 @@ export default class BaseTree {
      * 设置初始化树
      * @param {Array} data
      */
-    setInitialTree(data, callback) {
+    setInitialTree(name,data, callback) {
         var data = this.iconsFilter({data});
 
         $.fn.zTree.init(
             this.el, 
-            this.treeConfig(this.isCheck), 
+            this.treeConfig(this.isCheck,name), 
             this.setIsFirstNodesExpand(data, this.isExpand, this.isFreeze));
         this.zTree = $.fn.zTree.getZTreeObj(this.treeId);
 
@@ -78,12 +78,12 @@ export default class BaseTree {
      * @param {Boolean} isCheck: 树是否单选和多选
      * @param {Boolean} isAsync: 树是否异步
      */
-    treeConfig(isCheck) {
+    treeConfig(isCheck,name) {
         const _self = this;
 
         return {
             data: {
-                key: {name: 'text'},//zTree 显示节点时,将返回的text作为节点名称
+                key: {name: name},//zTree 显示节点时,将返回的text作为节点名称
                 simpleData: { enable: true }//简单数据模式
             },
             check: {

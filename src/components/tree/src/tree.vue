@@ -69,6 +69,12 @@ export default {
             type: Boolean,
             default: false
         },
+        names:{
+            type:String,
+            default(){
+                return "text"
+            }
+        },
         // 点击节点需要的节点参数
         autoParam: {
             type: Array,
@@ -121,7 +127,7 @@ export default {
             handler(val) {
                 if( Array.isArray(val) ) {
                     !val.length ? this.isEmptyText = true : this.isEmptyText = false;
-                    this.tree && this.tree.setInitialTree(val);
+                    this.tree && this.tree.setInitialTree(this.names,val);
                 }
             }
         }
@@ -184,7 +190,7 @@ export default {
                 errorCode && (this.isEmptyText = true);
                 if(flag && data) {
                     this.isEmptyText = false;
-                    this.tree.initialTree(data);
+                    this.tree.initialTree(this.names,data);
                 }
             });
         },
@@ -194,7 +200,7 @@ export default {
          * @param {Array} val
          */
         setInitialTree(val) {
-            this.tree && this.tree.setInitialTree(val);
+            this.tree && this.tree.setInitialTree(this.names,val);
         },
 
         /**
@@ -565,9 +571,9 @@ export default {
         });
         
         // url 和 data 不能共存
-        this.url && this.initialTree(this.url);  
+        this.url && this.initialTree(this.names,this.url);  
         if(Array.isArray(this.data) && this.data.length > 0) {
-            this.tree.setInitialTree(this.data);  
+            this.tree.setInitialTree(this.names,this.data);  
         };
         
         typeof this.treeReady === 'function' && this.treeReady();

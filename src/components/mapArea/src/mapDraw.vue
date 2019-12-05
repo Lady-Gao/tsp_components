@@ -5,8 +5,8 @@
                 <span style="line-height: 1;font-size: 18px;">{{title}}</span>
                 <i class="el-icon-close" style="float: right;" @click="clearDia" v-if="!toolType"></i>
                 <el-button-group style="float: right;" v-if="toolType">
-                    <el-button size="small" type="primary" :loading="subStatus" @click="submitFence">{{$t('action.save')}}</el-button>
-                    <el-button size="small" @click="comeBack">{{$t("action.back")}}</el-button>
+                    <el-button  type="primary" :loading="subStatus" @click="submitFence">{{$t('action.save')}}</el-button>
+                    <el-button  @click="comeBack">{{$t("action.back")}}</el-button>
                 </el-button-group>
             </div>
             <cv-scrollbar class="formClass">
