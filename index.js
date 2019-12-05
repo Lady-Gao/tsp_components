@@ -20,3 +20,4 @@ let moduleComponent = {
 }
 console.log(moduleComponent)
 export default moduleComponent
+ 

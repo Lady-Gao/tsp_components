@@ -36,6 +36,7 @@ export default {
             googleMap: "Google map",
             bestView: "Best view",
             FocusSuccess: "Focus on success!",
+            cancelFocusSuccess:"Cancellation of attention succeeded",
             FocusFail: "Pay attention to fail!",
             Networkerror: "Network error!",
             moreThen: "The company or group of vehicles under the vehicle exceeds",
