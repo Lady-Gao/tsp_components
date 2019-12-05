@@ -1,5 +1,5 @@
 <template>
-    <div class='Grid'>
+    <div class='Grid' >
 <!-- v-if render入参表格 -->
        <el-table ref='table'  header-align='left' 
        highlight-current-row
@@ -62,13 +62,12 @@
            return {
                currentPage:0,
                tableData:[],
-               currentRow:''
+               currentRow:'',
+               loading:false
            }
        },
        watch:{
            data(val) {
-                   debugger
-
                //有分页
                if(val&&val.records){
                    this.tableData = val.records;

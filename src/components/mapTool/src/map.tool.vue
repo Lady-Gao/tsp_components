@@ -226,7 +226,7 @@ export default {
         /**
          * 切换地图
          */
-        handlerSwitchMap(val) {
+        handlerSwitchMap(val) { 
             this.mapName = val;
             let mapVal = "";
             switch (val) {
@@ -237,7 +237,7 @@ export default {
                     mapVal = 4;
                 break;
             }
-            this.$emit('changeMap',val)
+            this.$emit('changeMap',mapVal)
             this.mapTypeFlag = false;
             this.checkedVal = true;
             this.TrafficFlag = false;
