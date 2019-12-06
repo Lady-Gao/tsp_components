@@ -161,22 +161,22 @@ export default {
       this.$emit("calibrate");
     },
     addEvent() {
-      this.$emit("add", { title: this.$t("power.add"), name: "add" });
+      this.$emit("add");
     },
     searchEvent() {
-      this.$emit("search", { title: this.$t("power.search"), name: "search" });
+      this.$emit("search");
     },
     removeEvent() {
-      this.$emit("remove", { title: this.$t("power.remove"), name: "remove" });
+      this.$emit("remove");
     },
     modifyEvent() {
-      this.$emit("modify", { title: this.$t("power.modify"), name: "modify" });
+      this.$emit("modify");
     },
     exportEvent() {
-      this.$emit("export", { title: this.$t("power.export"), name: "export" });
+      this.$emit("export");
     },
     importEvent() {
-      this.$emit("imports", { title: this.$t("power.import"), name: "import" });
+      this.$emit("imports");
     },
     sendDelAllEvent() {
       this.$emit("sendDelAll", {
