@@ -53,7 +53,7 @@
     "last 2 versions"
   ],
   "description": "#### 进入cvtspweb 打开终端",
-  "main": "lib/tsp_components.umd.min.js",
+  "main": "index.js",
   "repository": {
     "type": "git",
     "url": "http://git.cvtsp.com/Cvnavi_Web/TSP_Components"
