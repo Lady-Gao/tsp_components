@@ -45,7 +45,7 @@ export default {
         const childItem = titles.map((title, index) => {
             return (
                 <el-tab-pane name={'tabs' + index}>
-                    <span slot="label"> { title } </span>
+                    <span slot="label"> { this.$t(title) } </span>
                     {
                         !this.isScrollbar 
                         ? this.tabsCache['tabs' + index] && childs && childs[index] 
