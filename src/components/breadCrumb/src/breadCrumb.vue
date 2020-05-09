@@ -12,7 +12,8 @@ export default {
   },
   computed:{
     levelList(){
-      return this.$route.matched
+      console.log(this.$route,'this.$route.matched')
+      return this.$route.matched.slice(1)
     }
 
   }

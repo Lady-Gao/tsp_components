@@ -18,6 +18,5 @@ let moduleComponent = {
     install,
     ...modulearr
 }
-console.log(moduleComponent)
 export default moduleComponent
  
