@@ -1,8 +1,7 @@
 import '../css/index.scss'
+
 export default {
     name: 'Tabs',
-    components:{
-    },
     props: {
         titles: {
             type: [Function, Array],
@@ -22,10 +21,6 @@ export default {
         type: {
             Type: String,
             default: '' //(border-card)
-        },
-        tabPosition:{
-            type:String,
-            default:''
         }
     },
     data() {
@@ -50,7 +45,7 @@ export default {
         const childItem = titles.map((title, index) => {
             return (
                 <el-tab-pane name={'tabs' + index}>
-                    <span slot="label"> { this.$t(title) } </span>
+                    <span slot="label"> { title } </span>
                     {
                         !this.isScrollbar 
                         ? this.tabsCache['tabs' + index] && childs && childs[index] 
@@ -66,7 +61,6 @@ export default {
                 type={this.type}
                 class={this.isScrollbar ? "cv-tabs" : ""}
                 value={this._activeName} 
-                tab-position={this.tabPosition}
                 onInput={this.handlerChange.bind(this)}>
                 {childItem}
             </el-tabs>
