@@ -15,7 +15,7 @@
         <!-- 表格前部 -->
         <slot ></slot>
         <!-- render模板 -->
-        <el-table-column  align="left" showOverflowTooltip v-for="item in render" :key='item.prop'    :label="item.label"  :prop='item.prop'   :min-width="item.width||100" :formatter='item.formatter||null'>
+        <el-table-column  align="left" showOverflowTooltip v-for="item in renderArr" :key='item.prop'    :label="item.label"  :prop='item.prop'   :min-width="item.width||100" :formatter='item.formatter||null'>
             </el-table-column>
         <!-- 表格后部 -->
         <slot name='opertion'></slot>
@@ -39,7 +39,7 @@
 </template>
 
 <script>
-/**render参数
+/**renderArr
  * [
  *   {prop:'roleName',label:this.$t('role.roleName'),formatter:Fun},
  *   ]
@@ -55,7 +55,7 @@
             } }
             },
             rowClass:"defaultRow",
-            render:Array,//入参模板
+            renderArr:Array,//入参模板
             selection:false,//是否启用复选表格
         },
        data(){
@@ -152,7 +152,9 @@
             this.$emit('loadTable',{current:val})
         }
        },
-        
+        mounted(){
+            console.log(this.renderArr)
+        }
     }
 </script>
 
